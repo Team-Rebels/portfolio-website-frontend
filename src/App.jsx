@@ -1,16 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Home from "./home";
-import Dashboard from "./assets/pages/dashboard";
+
 import LogIn from "./pages/logIn";
 import SignUp from "./pages/signUp";
 import Preview from "./pages/preview";
-import DashboardLayout from "./assets/pages/dashboard/layouts";
-import Skills from "./assets/pages/dashboard/pages/skills";
-import Overview from "./assets/pages/dashboard/pages/overview";
-import Projects from "./assets/pages/dashboard/pages/projects";
-import Acheivements from "./assets/pages/dashboard/pages/acheivements";
-import Experiences from "./assets/pages/dashboard/pages/experiences";
-import SocialLinks from "./assets/pages/dashboard/pages/socialLinks";
+import DashLayout from "./pages/dashboard/layouts/dashLayout";
+import Acheivements from "./pages/dashboard/pages/acheivements";
+import Experiences from "./pages/dashboard/pages/experiences";
+import Overview from "./pages/dashboard/pages/overview";
+import Projects from "./pages/dashboard/pages/projects";
+import Skills from "./pages/dashboard/pages/skills";
+import SocialLinks from "./pages/dashboard/pages/socialLinks";
+
+
 
 function App() {
   const router = createBrowserRouter ([
@@ -24,7 +26,7 @@ function App() {
           },
           {
             path: "dashboard",
-            element: <DashboardLayout/>,
+            element: <DashLayout/>,
             children: [
               {
                 index: true,
