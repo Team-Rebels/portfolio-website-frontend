@@ -1,7 +1,10 @@
 
+import PagesLayout from "../layouts/pagesLayout";
 const Acheivements = () => {
   return (
-    <div>Acheivements</div>
+    <PagesLayout headerText="Acheivements" button="Add New Acheivements">
+      <span>Acheivements List Here</span>
+    </PagesLayout>
   )
 }
 

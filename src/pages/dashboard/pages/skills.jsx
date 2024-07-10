@@ -1,7 +1,13 @@
+import PagesLayout from "../layouts/pagesLayout";
 
 const Skills = () => {
   return (
-    <div>Skills</div>
+    <PagesLayout headerText="Skills" buttonText="Add New Skill">
+      <span>All Skills Here</span>
+      <p>Hey</p>
+    </PagesLayout>
+    
+    
   )
 }
 
