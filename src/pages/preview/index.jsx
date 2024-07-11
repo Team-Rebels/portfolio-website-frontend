@@ -1,6 +1,12 @@
+import banner from "../assets/pages/preview/banner.jpg"
+
 const Preview = () => {
   return (
-    <div>Preview</div>
+      <div>
+        <div>
+          <img src={banner} alt="" />
+        </div>
+      </div>
   )
 }
 
