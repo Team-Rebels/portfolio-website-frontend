@@ -34,14 +34,14 @@ const LogIn = () => {
                 <hr className="w-full border-gray-300" />
               </div>
               <button className="w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded shadow-sm hover:bg-gray-50 flex items-center justify-center">
-                <img src={google} alt="Google logo" className="w-5 h-5 mr-2" />
+                <img src="" alt="Google logo" className="w-5 h-5 mr-2" />
                 Sign in with Google
               </button>
             </form>
           </div>
         </div>
         <div className="w-1/2">
-          <img src={signImage} alt="sign up and in background" className="object-cover w-full h-full" />
+          <img src="" alt="sign up and in background" className="object-cover w-full h-full" />
         </div>
       </div>
     );

@@ -5,13 +5,13 @@ import LogIn from "./pages/logIn";
 import SignUp from "./pages/signUp";
 import Preview from "./pages/preview";
 import DashLayout from "./pages/dashboard/layouts/dashLayout";
-import Acheivements from "./pages/dashboard/pages/acheivements";
-import Experiences from "./pages/dashboard/pages/experiences";
-import Overview from "./pages/dashboard/pages/overview";
-import Projects from "./pages/dashboard/pages/projects";
-import Skills from "./pages/dashboard/pages/skills";
-import SocialLinks from "./pages/dashboard/pages/socialLinks";
-
+import Acheivements from "./pages/dashboard/components/acheivements";
+import Experiences from "./pages/dashboard/components/experiences";
+import Overview from "./pages/dashboard/components/overview";
+import Projects from "./pages/dashboard/components/projects";
+import Skills from "./pages/dashboard/components/skills";
+import SocialLinks from "./pages/dashboard/components/socialLinks";
+import Education from "./pages/dashboard/components/education";
 
 
 function App() {
@@ -53,6 +53,10 @@ function App() {
               {
                 path: "socialLinks",
                 element: <SocialLinks/>
+              },
+              {
+                path: "education",
+                element: <Education/>
               },
             ]
           },
