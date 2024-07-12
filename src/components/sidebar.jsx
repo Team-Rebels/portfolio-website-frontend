@@ -9,8 +9,8 @@ import BannerImage from '../assets/images/Banner.png';
 
 const Sidebar = () => {
   return (
-    <div className="h-screen w-[300px] bg-[#4F46E5] text-white p-4 flex flex-col rounded-sm">
-      <div className="mb-8">
+    <div className="h-dvh w-[300px] bg-[#4F46E5] text-white p-4 flex flex-col rounded-sm">
+      <div className="mb-10">
         <span className="text-2xl font-bold">SkillVault</span>
       </div>
       <div className="flex-grow">

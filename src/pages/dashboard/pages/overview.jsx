@@ -1,5 +1,6 @@
 import BImage from '../../../assets/images/Banner.png';
 import Charles from '../../../assets/images/profile.jpg';
+import PagesLayout from '../layouts/pagesLayout';
 
 const Overview = () => {
   return (
@@ -31,20 +32,7 @@ const Overview = () => {
           <span className="bg-gray-200 p-2 rounded-md">Figma</span>
         </div>
       </div>
-      <div className="bg-white p-4 rounded-md shadow-md mt-4">
-        <h2 className="text-xl font-semibold mb-2">Case Studies</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-gray-100 p-4 rounded-md">
-            <p>Case Study 1</p>
-          </div>
-          <div className="bg-gray-100 p-4 rounded-md">
-            <p>Case Study 2</p>
-          </div>
-          <div className="bg-gray-100 p-4 rounded-md">
-            <p>Case Study 3</p>
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 };

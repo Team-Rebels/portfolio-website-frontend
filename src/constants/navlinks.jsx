@@ -1,4 +1,4 @@
-import { Layers3, FolderOpen, BriefcaseBusiness, Trophy , BookCopy, MessageSquareText } from 'lucide-react';
+import { Layers3, FolderOpen, BriefcaseBusiness, Trophy, BookCopy, MessageSquareText } from 'lucide-react';
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
 import Acheivements from "../pages/dashboard/pages/acheivements";
 import Experiences from "../pages/dashboard/pages/experiences";
@@ -36,8 +36,34 @@ const D = {
     },
     {
       icon: <MessageSquareText />,
-      text: 'Social Links',
+      text: 'Socials',
       link: '/dashboard/socialLinks',
+    },
+  ],
+  SKILLS: [
+    {
+      name: 'Javascript',
+      levelOfProficiency: 'Beginner',
+    },
+    {
+      name: 'HTML',
+      levelOfProficiency: 'Advanced',
+    },
+    {
+      name: 'CSS',
+      levelOfProficiency: 'Intermediate',
+    },
+    {
+      name: 'Typescript',
+      levelOfProficiency: 'Beginner',
+    },
+    {
+      name: 'React Native',
+      levelOfProficiency: 'Beginner',
+    },
+    {
+      name: 'React Native',
+      levelOfProficiency: 'Beginner',
     },
   ],
 };

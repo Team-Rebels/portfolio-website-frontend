@@ -12,6 +12,9 @@ import Projects from "./pages/dashboard/pages/projects";
 import Skills from "./pages/dashboard/pages/skills";
 import SocialLinks from "./pages/dashboard/pages/socialLinks";
 import Education from "./pages/dashboard/pages/education";
+import AddSkill from "./pages/dashboard/pages/addSkill";
+import AddProject from "./pages/dashboard/pages/addProject";
+import AddExperience from "./pages/dashboard/pages/addExperience";
 
 
 function App() {
@@ -37,8 +40,16 @@ function App() {
           element: <Skills />,
         },
         {
+          path: 'Skills/add-skill',
+          element: <AddSkill />,
+        },
+        {
           path: 'projects',
           element: <Projects />,
+        },
+        {
+          path: 'projects/add-project',
+          element: <AddProject />,
         },
         {
           path: 'achievements',
@@ -47,6 +58,10 @@ function App() {
         {
           path: 'experiences',
           element: <Experiences />,
+        },
+        {
+          path: 'experiences/add-experience',
+          element: <AddExperience />,
         },
         {
           path: 'socialLinks',
