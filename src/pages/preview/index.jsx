@@ -1,16 +1,16 @@
 import React from 'react'
-import { banner3, profile } from '../../assets'
+import { banner2, profile, website, website4, website5 } from '../../assets'
 import { Linkedin } from 'lucide-react';
 
 const Preview = () => {
   return (
-    <div className='w-full bg-black text-[white]'>
+    <div className='w-full bg-[#212A31] text-[white]'>
       <div>
-        <img className='h-full bg-cover' src={banner3} alt="" />
+        <img className='h-[50vh] w-full bg-cover' src={banner2} alt="" />
       </div>
-      <div className='flex flex-row justify-evenly '>
-        <div className="bg-[yellow] border p-4 w-1/4 ml-[-270px] text-[black] rounded">
-          <img className="w-30 h-[150px] rounded-full mb-4 ml-[80px]" src={profile} alt="Profile" />
+      <div className='flex flex-row justify-center gap-[40px] ml-[90px]'>
+        <div className="bg-[#124E66] border p-4 w-1/4 ml-[-270px] text-[white] rounded-lg -translate-y-[28vh]">
+          <img className="w-30 h-[150px] rounded-full mb-4 ml-[70px]" src={profile} alt="Profile" />
           <div className="mb-4 flex flex-col text-center">
             <h1 className="text-xl font-bold">Charles Adu-Sarkodie</h1>
             <p>Web Designer</p>
@@ -35,7 +35,7 @@ const Preview = () => {
           <div className="mb-4">
             <p>On the Web</p>
             <div className='flex flex-row gap-3 border-[1px] border-black rounded-md'>
-              <a className="text-blue-600 h-auto mt-[2px]" href="#"><Linkedin /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Linkedin /></a>
               <p className='text-[20px]'>LinkedIn</p>
             </div>
             {/* <div>
@@ -57,26 +57,25 @@ const Preview = () => {
             <p>React</p>
             <p>MongoDB</p>
           </div>
-          <div>
+          <div className='flex flex-row gap-[20px] justify-center'>
             <span className="block text-red-500 cursor-pointer">Report</span>
             <span className="block text-red-500 cursor-pointer">Block</span>
           </div>
         </div>
-        <div>
-          <div className='flex flex-row mt-[50px] gap-[40px] py-[18px] px-[9px] mb-[25px]'>
+        <div className='mr-[-100px] ml-[60px] font-bold text-[20px]'>
+          <div className='flex flex-row mt-[50px] gap-[60px] py-[18px] px-[9px] mb-[25px]'>
+          <button>Why Hire Me</button>
             <button>E-Commerce</button>
             <button>Tourism</button>
             <button>Coporate</button>
           </div>
           <div>
-            <h3>Project</h3>
-            <div>
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
+            <h3 className='mb-5'>Project</h3>
+            <div className='w-[750px] grid grid-cols-2 gap-[40px]'>
+              <img src={website} alt="" />
+              <img src={website4} alt="" />
+              <img src={website4} alt="" />
+              <img src={website5} alt="" />
             </div>
           </div>
         </div>
