@@ -10,11 +10,14 @@ import Experiences from "./pages/dashboard/pages/experiences";
 import Overview from "./pages/dashboard/pages/overview";
 import Projects from "./pages/dashboard/pages/projects";
 import Skills from "./pages/dashboard/pages/skills";
-import SocialLinks from "./pages/dashboard/pages/socialLinks";
+import Socials from "./pages/dashboard/pages/socials";
 import Education from "./pages/dashboard/pages/education";
 import AddSkill from "./pages/dashboard/pages/addSkill";
 import AddProject from "./pages/dashboard/pages/addProject";
 import AddExperience from "./pages/dashboard/pages/addExperience";
+import AddAcheivement from "./pages/dashboard/pages/addAcheivement";
+import AddSocialLink from "./pages/dashboard/pages/addSocial";
+import AddSocial from "./pages/dashboard/pages/addSocial";
 
 
 function App() {
@@ -40,7 +43,7 @@ function App() {
           element: <Skills />,
         },
         {
-          path: 'Skills/add-skill',
+          path: 'skills/addskill',
           element: <AddSkill />,
         },
         {
@@ -48,7 +51,7 @@ function App() {
           element: <Projects />,
         },
         {
-          path: 'projects/add-project',
+          path: 'projects/addproject',
           element: <AddProject />,
         },
         {
@@ -56,16 +59,25 @@ function App() {
           element: <Acheivements />,
         },
         {
+          path: 'acheivements/addacheivement',
+          element: <AddAcheivement />,
+        },
+        {
           path: 'experiences',
           element: <Experiences />,
         },
         {
-          path: 'experiences/add-experience',
+          path: 'experiences/addexperience',
           element: <AddExperience />,
         },
         {
-          path: 'socialLinks',
-          element: <SocialLinks />,
+          path: 'socials',
+          element: <Socials />,
+        },
+        
+        {
+          path: 'socials/addsocial',
+          element: <AddSocial />,
         },
       ],
     },
