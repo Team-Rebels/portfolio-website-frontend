@@ -15,7 +15,7 @@ import Education from "./pages/dashboard/pages/education";
 import AddSkill from "./pages/dashboard/pages/addSkill";
 import AddProject from "./pages/dashboard/pages/addProject";
 import AddExperience from "./pages/dashboard/pages/addExperience";
-import AddAcheivement from "./pages/dashboard/pages/addAcheivement";
+
 import AddSocialLink from "./pages/dashboard/pages/addSocial";
 import AddSocial from "./pages/dashboard/pages/addSocial";
 
@@ -60,7 +60,7 @@ function App() {
         },
         {
           path: 'acheivements/addacheivement',
-          element: <AddAcheivement />,
+          element: <AddAcheivements />,
         },
         {
           path: 'experiences',
