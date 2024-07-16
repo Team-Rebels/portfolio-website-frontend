@@ -1,5 +1,7 @@
 const K = {
     NAVLINKS: [
+        
+
         {
             name: "Dashboard",
             path: "/dashboard"
@@ -17,9 +19,13 @@ const K = {
             name: "Sign Up",
             path: "/signUp"
         },
+        
+    
+
+
     ],
 }   
 
 
 
-export default K;
+export default K ;
