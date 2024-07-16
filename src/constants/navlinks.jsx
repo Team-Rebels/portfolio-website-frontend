@@ -1,7 +1,16 @@
-
 import { Layers3, FolderOpen, BriefcaseBusiness, Trophy, BookCopy, MessageSquareText } from 'lucide-react';
 import { Award, BookText, FolderKanban, MessageCircleCode,} from "lucide-react";
-import { FaLinkedin, FaFacebookSquare, FaTwitterSquare, FaYoutubeSquare } from 'react-icons/fa';
+
+
+import GitHubLogo from "../assets/images/github-logo.png";
+import InstagramLogo from "../assets/images/instagram.png";
+import LinkedInLogo from "../assets/images/linkedin.png";
+import JavascriptLogo from '../assets/images/javascript-logo.png';
+import HTMLLogo from '../assets/images/html-logo.jpg';
+import CSSLogo from '../assets/images/CSS-logo.jpg';
+import TypescriptLogo from '../assets/images/typescript-logo.png';
+import ReactNativeLogo from '../assets/images/react-logo.png';
+
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
 import Acheivements from "../pages/dashboard/pages/acheivements";
 import Experiences from "../pages/dashboard/pages/experiences";
@@ -44,29 +53,36 @@ const D = {
     },
   ],
   SKILLS: [
-    {
+    { 
+  
       name: 'Javascript',
       levelOfProficiency: 'Beginner',
+      images: JavascriptLogo,
     },
     {
       name: 'HTML',
       levelOfProficiency: 'Advanced',
+      images: HTMLLogo,
     },
     {
       name: 'CSS',
       levelOfProficiency: 'Intermediate',
+      images: CSSLogo,
     },
     {
       name: 'Typescript',
       levelOfProficiency: 'Beginner',
+      images: TypescriptLogo,
     },
     {
       name: 'React Native',
       levelOfProficiency: 'Beginner',
+      images: JavascriptLogo,
     },
     {
-      name: 'React Native',
+      name: 'Tailwind CSS',
       levelOfProficiency: 'Beginner',
+      images: '',
     },
 
   ],
@@ -99,24 +115,19 @@ const D = {
   ],
   SOCIALLINKS: [
     {
-      icon: <FaLinkedin />,
+      icon: GitHubLogo,
+      platform: 'GitHub',
+      url: 'https://github.com/yourprofile',
+    },
+    {
+      icon: InstagramLogo,
+      platform: 'Instagram',
+      url: 'https://instagram.com/yourprofile',
+    },
+    {
+      icon: LinkedInLogo,
       platform: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/yourprofile',
-    },
-    {
-      icon: <FaFacebookSquare />,
-      platform: 'Facebook',
-      url: 'https://www.facebook.com/yourprofile',
-    },
-    {
-      icon: <FaTwitterSquare />,
-      platform: 'X (Twitter)',
-      url: 'https://twitter.com/yourhandle',
-    },
-    {
-      icon: <FaYoutubeSquare />,
-      platform: 'YouTube',
-      url: 'https://www.youtube.com/c/yourchannel',
+      url: 'https://linkedin.com/in/yourprofile',
     },
   ],
 

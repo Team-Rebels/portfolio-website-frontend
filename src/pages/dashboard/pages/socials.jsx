@@ -1,5 +1,3 @@
-
-
 import PagesLayout from "../layouts/pagesLayout"
 import { useNavigate } from 'react-router-dom';
 import D from '../../../constants/navlinks';
@@ -7,18 +5,18 @@ import { TrashIcon, Edit } from 'lucide-react';
 
 const Socials = () => {
   const navigate = useNavigate();
-  
+
   return (
     <PagesLayout
-      headerText="Social Links"
+      headerText="Socials"
       buttonText="Add New Social Link"
       onClick={() => navigate('/dashboard/socials/addsocial')}
     >
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="flex flex-cols-1 pt-20 gap-4">
         {D.SOCIALLINKS.map(({ icon, platform, url }, index) => (
           <div key={index} className="bg-white rounded-xl shadow-md flex flex-col p-5">
             <div className="flex items-center mb-3">
-              <span className="text-2xl mr-3">{icon}</span>
+              <img src={icon} alt={`${platform} icon`} className="w-8 h-8 mr-3" />
               <span className="font-semibold">{platform}</span>
             </div>
             <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline mb-3">
@@ -40,8 +38,6 @@ const Socials = () => {
 };
 
 export default Socials;
-
-
 
 
 

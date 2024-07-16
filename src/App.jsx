@@ -1,26 +1,69 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import Home from "./home";
+import React, { useState } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './home';
+import LogIn from './pages/logIn';
+import SignUp from './pages/signUp';
+import Preview from './pages/preview';
+import DashLayout from './pages/dashboard/layouts/dashLayout';
+import Overview from './pages/dashboard/pages/overview';
+import Skills from './pages/dashboard/pages/skills';
+import Projects from './pages/dashboard/pages/projects';
+import Socials from './pages/dashboard/pages/socials';
+import Experiences from './pages/dashboard/pages/experiences';
+import AddSkill from './pages/dashboard/pages/addSkill';
+import AddProject from './pages/dashboard/pages/addProject';
+import AddExperience from './pages/dashboard/pages/addExperience';
+import AddSocial from './pages/dashboard/pages/addSocial';
+import Achievements from './pages/dashboard/pages/acheivements';
+import AddAchievement from './pages/dashboard/pages/addAcheivements';
+import Website1 from './assets/images/website.jpg';
+import Website4 from './assets/images/website4.jpg';
+import Website5 from './assets/images/website5.jpg';
 
-import LogIn from "./pages/logIn";
-import SignUp from "./pages/signUp";
-import Preview from "./pages/preview";
-import DashLayout from "./pages/dashboard/layouts/dashLayout";
-import Acheivements from "./pages/dashboard/pages/acheivements";
-import Experiences from "./pages/dashboard/pages/experiences";
-import Overview from "./pages/dashboard/pages/overview";
-import Projects from "./pages/dashboard/pages/projects";
-import Skills from "./pages/dashboard/pages/skills";
-import Socials from "./pages/dashboard/pages/socials";
-import Education from "./pages/dashboard/pages/education";
-import AddSkill from "./pages/dashboard/pages/addSkill";
-import AddProject from "./pages/dashboard/pages/addProject";
-import AddExperience from "./pages/dashboard/pages/addExperience";
-
-import AddSocialLink from "./pages/dashboard/pages/addSocial";
-import AddSocial from "./pages/dashboard/pages/addSocial";
 
 
 function App() {
+  const [experiences, setExperiences] = useState([]);
+  const [achievements, setAchievements] = useState([]);
+  const [projects, setProjects] = useState([
+    {
+      title: 'Restaurant App',
+      description: 'A description of project one.',
+      technologies: 'React, Node.js, MongoDB',
+      projectUrl: 'https://project-one.com',
+      githubUrl: 'https://github.com/project-one',
+      startDate: '2023-01-01',
+      endDate: '2023-03-01',
+      role: 'Frontend Developer',
+      thumbnailImage: Website1,
+      screenshots: [],
+    },
+    {
+      title: 'Event App',
+      description: 'A description of project two.',
+      technologies: 'React, Tailwind CSS, Vite',
+      projectUrl: 'https://project-two.com',
+      githubUrl: 'https://github.com/project-two',
+      startDate: '2023-02-01',
+      endDate: '2023-04-01',
+      role: 'Backend Developer',
+      thumbnailImage: Website4,
+      screenshots: [],
+    },
+    {
+      title: 'Furnish App',
+      description: 'A description of project three.',
+      technologies: 'React, Tailwind CSS, Vite',
+      projectUrl: 'https://project-three.com',
+      githubUrl: 'https://github.com/project-three',
+      startDate: '2023-03-01',
+      endDate: '2023-05-01',
+      role: 'Full Stack Developer',
+      thumbnailImage: Website5,
+      screenshots: [],
+    },
+  ]);
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -48,33 +91,32 @@ function App() {
         },
         {
           path: 'projects',
-          element: <Projects />,
+          element: <Projects projects={projects} />,
         },
         {
           path: 'projects/addproject',
-          element: <AddProject />,
+          element: <AddProject setProjects={setProjects} />,
         },
         {
           path: 'achievements',
-          element: <Acheivements />,
+          element: <Achievements />,
         },
         {
-          path: 'acheivements/addacheivement',
-          element: <AddAcheivements />,
+          path: 'achievements/addAchievement',
+          element: <AddAchievement setAchievements={setAchievements} />,
         },
         {
           path: 'experiences',
-          element: <Experiences />,
+          element: <Experiences experiences={experiences} />,
         },
         {
-          path: 'experiences/addexperience',
-          element: <AddExperience />,
+          path: 'experiences/addExperience',
+          element: <AddExperience setExperiences={setExperiences} />,
         },
         {
           path: 'socials',
           element: <Socials />,
         },
-        
         {
           path: 'socials/addsocial',
           element: <AddSocial />,

@@ -1,3 +1,4 @@
+// AddExperience.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
@@ -17,7 +18,7 @@ const AddExperience = () => {
     <PagesLayout headerText="Add New Experience" buttonText="" onClick={() => {}}>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700">
+          <label className="block text-sm  font-medium text-gray-700">
             Job Title
           </label>
           <input

@@ -9,9 +9,9 @@ import BannerImage from '../assets/images/Banner.png';
 
 const Sidebar = () => {
   return (
-    <div className="h-dvh w-[300px] bg-[#4F46E5] text-white p-4 flex flex-col rounded-sm">
+    <div className="h-dvh w-[300px] bg-[#0F1431] text-white p-4 flex flex-col rounded-sm">
       <div className="mb-10">
-        <span className="text-2xl font-bold">SkillVault</span>
+        <span className="text-2xl font-bold">CAPTURA</span>
       </div>
       <div className="flex-grow">
         {D.NAVLINKS.map(({ icon, text, link }, index) => (
