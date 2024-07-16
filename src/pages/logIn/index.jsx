@@ -1,51 +1,140 @@
+import { Link, useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { apiLogin } from "../../services/auth";
+import { useState } from 'react';
+import background from "../../assets/images/background.avif"
+import googlelogo from "../../assets/images/googlelogo.png"
 
 
 const LogIn = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const navigate = useNavigate
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const res = await apiLogin({
+        email: data.email,
+        password: data.password
+      });
+      console.log("Response", res.data);
+      navigate("/dashboard")
+
+
+
+    } catch (error) {
+      console.log(error);
+
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
-  
-      <div className="flex h-screen">
-        <div className="w-1/2 flex items-center justify-center bg-lightBlue">
-          <div className="w-full max-w-sm space-y-4 p-8">
-            <h1 className="text-5xl font-semibold">Sign in</h1>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Email address</label>
+
+    <div className="">
+      <div className="flex">
+        <div className="w-1/2 h-screen">
+
+          <img src={background} alt="Login image" className="bg-cover bg-center" />
+        </div>
+
+
+        <div className="w-1/2">
+          <div className="flex flex-col justify-center text-left ">
+            <h3 className="font-extrabold text-center">Welcome Back.</h3>
+            <p></p>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
+              <div className="flex flex-col space-y-1">
+                <label
+                  htmlFor="email"
+                  className="font-semibold text-[#1826ef] mb-0">
+                  Email
+                </label>
                 <input
-                  type="email"
-                  placeholder="Email address"
-                  className="mt-1 block w-full border border-gray-300 rounded-md p-3"
+                  type="text"
+                  id="email"
+                  className="h-10 w-1/2 px-2 py-1 border-blue-500 border-2 rounded-lg "
+                  {
+                  ...register("email", { required: "Enter your email !" })
+                  }
                 />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Password</label>
+                {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
+
+                <label
+                  htmlFor="password"
+                  className="font-semibold text-[#1826ef] mb-0 "
+                >
+                  Password
+                </label>
                 <input
                   type="password"
-                  placeholder="Password"
-                  className="mt-1 block w-full border border-gray-300 rounded-md p-3"
+                  id="password"
+                  className="h-10 w-1/2 px-2 py-1 border-blue-500 border-2 rounded-lg"
+                  {
+                  ...register("password", { required: "Enter your password !" })
+                  }
                 />
+                {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
+                <div className=" m-10 ml-16">
+                  <button
+                    type="submit"
+                    className="mt-10 mb-5 h-8 w-40 bg-white text-blue-500  border-blue-500 border-2 rounded-lg hover:bg-[#a1739b]">
+
+                    {isSubmitting ? "Loading..." : "Login"}
+                  </button>
+
+                  <div className="flex items-center">
+                    <hr className="flex-1 border-gray-300" />
+                    <span className="mx-2 text-gray-600">or</span>
+                    <hr className="flex-1 border-gray-300" />
+                  </div>
+
+                  <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2">
+                    <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />
+                  </button>
+
+
+                </div>
               </div>
-              <button className="w-full bg-[#A5045B] text-white py-2 px-4 rounded shadow-sm hover:bg-[#D00855]">
-                Log in
-              </button>
-              <div className="flex items-center my-4">
-                <hr className="w-full border-gray-300" />
-                <span className="mx-2 text-gray-500">or</span>
-                <hr className="w-full border-gray-300" />
-              </div>
-              <button className="w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded shadow-sm hover:bg-gray-50 flex items-center justify-center">
-                <img src="" alt="Google logo" className="w-5 h-5 mr-2" />
-                Sign in with Google
-              </button>
             </form>
+
           </div>
+          <div className=" inline-block align-baseline">
+            <p>Not registered?</p>
+
+            <div className="text-justify">
+              <span className="underline">Forgot password?</span>
+            </div>
+
+            <div className=" font-normal">
+              <Link to="/signup" className="underline font-bold">
+                Sign Up
+              </Link>
+            </div>
+          </div>
+
+
         </div>
-        <div className="w-1/2">
-          <img src="" alt="sign up and in background" className="object-cover w-full h-full" />
-        </div>
+
+
       </div>
-    );
-  };
-  
+      </div>
+    
+
+
+
+
+
+  );
+};
+
 
 export default LogIn
