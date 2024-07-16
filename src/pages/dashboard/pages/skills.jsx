@@ -1,16 +1,39 @@
 
-
+import PagesLayout from '../layouts/pagesLayout';
+import  D  from '../../../constants/navlinks';
+import {TrashIcon} from 'lucide-react'
+import { Edit } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Skills = () => {
-  return (
-    <div className=" h-screen flex items-center justify-center gap-4 mt-4">
-        <div className=" bg-white h-full w-full  p-2 rounded-md shadow-md">
-          <h2 className="text-5xl font-semibold text-center mb-4">Add Your Skills</h2>
-          <p className="">Showcase your expertise by adding your top skills below.</p>
-        </div>
-        
-      </div>
-  )
-}
 
-export default Skills
+  const navigate = useNavigate()
+  return (
+    <PagesLayout
+      headerText="Skills"
+      buttonText="Add New Skill"
+      onClick={() => navigate('/dashboard/skills/addSkill')}
+    > 
+      <div className="grid grid-cols-4 gap-6 ">
+        {D.SKILLS.map(({ name, levelOfProficiency, image }, index) => (
+          <div key={index} className="rounded-xl h-40 shadow-md flex flex-col bg-white p-5">
+            
+            <span>{name}</span>
+            <span>{levelOfProficiency}</span>
+            <span>{image}</span>
+            <div className="flex mt-auto">
+              <button className="mr-2 p-2 hover:bg-green-400 rounded">
+                <Edit className="text-green-600 w-5 h-5" />
+              </button>
+              <button className="p-2 hover:bg-red-400 rounded">
+                <TrashIcon className="text-red-600 w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </PagesLayout>
+  );
+};
+
+export default Skills;

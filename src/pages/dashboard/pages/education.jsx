@@ -1,4 +1,5 @@
 import React from 'react'
+import PagesLayout from '../layouts/pagesLayout';
 
 const Education = () => {
   return (
