@@ -4,8 +4,8 @@ import { apiLogin } from "../../services/auth";
 import { useState } from 'react';
 import background from "../../assets/images/background.avif"
 import googlelogo from "../../assets/images/googlelogo.png"
-import { ColorRing } from "react-loader-spinner";
 import { toast } from "react-toastify";
+import Loader from "../../components/loader";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -30,7 +30,7 @@ const LogIn = () => {
 
     } catch (error) {
       console.log(error);
-      toast.error(error);
+      toast.error("An error occured!");
 
     } finally {
       setIsSubmitting(false)
@@ -88,15 +88,7 @@ const LogIn = () => {
                   <button
                     type="submit"
                     className="mt-10 mb-5 h-8 w-40 bg-white text-blue-500  border-blue-500 border-2 rounded-lg hover:bg-[#a1739b]">
-                    {isSubmitting ? (<ColorRing
-                      visible={true}
-                      height="80"
-                      width="80"
-                      ariaLabel="color-ring-loading"
-                      wrapperStyle={{}}
-                      wrapperClass="color-ring-wrapper"
-                      colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-                    />) : "Login"}
+                    {isSubmitting ? <Loader /> : "Login"}
                   </button>
                   <div className="flex items-center">
                     <hr className="flex-1 border-gray-300" />
