@@ -5,11 +5,11 @@ import DashboardBg from '../../../assets/images/dashboard-bg.png';
 
 const PagesLayout = ({ headerText, buttonText, headerTextClassName, children, onClick }) => {
   return (
-    <div className="relative p-10 flex flex-col gap-y-16 flex-grow bg-white">
+    <div className="relative p-10 flex flex-col gap-y-16 flex-grow bg-[#F8FAFC]">
       {/* Background image with opacity */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-100"
-        style={{ backgroundImage: `url(${DashboardBg})` }}
+        
       ></div>
       
       {/* Content */}

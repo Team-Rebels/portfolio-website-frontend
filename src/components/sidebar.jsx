@@ -27,8 +27,8 @@ const Sidebar = () => {
         </Link>
       </div>
       <div className="mt-auto">
-        <button className="flex gap-x-4 items-center p-2 hover:bg-[#4338CA] rounded-full">
-          <span className="text-white p-2 rounded-full"><LogOut /></span>
+        <button className="flex gap-x-4 items-center p-2 ">
+          <span className="text-white p-2 rounded-sm"><LogOut /></span>
           <span>Logout</span>
         </button>
       </div>

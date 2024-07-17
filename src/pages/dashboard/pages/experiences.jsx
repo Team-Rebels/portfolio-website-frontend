@@ -1,9 +1,8 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
 import experienceData from '../../../constants/experienceData';
-import {TrashIcon} from 'lucide-react'
-import { Edit } from 'lucide-react';
-
+import { TrashIcon, Edit } from 'lucide-react';
 
 const Experiences = () => {
   const navigate = useNavigate();
@@ -19,13 +18,16 @@ const Experiences = () => {
         {experienceData.map((experience, index) => (
           <div key={index} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
             <div className="flex items-center mb-3 text-lg font-semibold">
-              {experience.title}
+              {experience.role} at {experience.companyName}
+            </div>
+            <div className="text-gray-600">{experience.location}</div>
+            <div className="text-gray-600">{experience.startDate} - {experience.endDate ? experience.endDate : 'Present'}</div>
+            <div className="text-gray-600">
+              <span className="font-semibold">Skills: </span>{experience.skills.join(', ')}
             </div>
             <div className="text-gray-600">
-              <span className="font-semibold">{experience.company}</span> - {experience.employmentType}
+              <span className="font-semibold">Responsibilities: </span>{experience.responsibilities.join(', ')}
             </div>
-            <div className="text-gray-600">{experience.duration}</div>
-            <div className="text-gray-600">{experience.location}</div>
             <div className="flex mt-auto">
               <button className="mr-2 p-2 hover:bg-green-400 rounded">
                 <Edit className="w-5 h-5 text-green-600" />
@@ -41,4 +43,4 @@ const Experiences = () => {
   );
 };
 
-export default Experiences
+export default Experiences;

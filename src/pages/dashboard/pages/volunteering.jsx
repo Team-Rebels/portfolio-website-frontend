@@ -54,13 +54,13 @@ const Volunteering = () => {
             <div className="flex items-center mb-3 text-lg font-semibold">
               {experience.role} at {experience.organization}
             </div>
-            <div className="text-gray-600">{experience.description}</div>
-            <div className="text-gray-600">{experience.location}</div>
-            <div className="text-gray-600">{experience.startDate} - {experience.endDate}</div>
+            <div className="text-black">{experience.description}</div>
+            <div className="text-black">{experience.location}</div>
+            <div className="text-black">{experience.startDate} - {experience.endDate}</div>
             <div className="flex mt-3">
               <div className="mr-auto flex space-x-2">
                 {experience.skills.map((skill, index) => (
-                  <span key={index} className="text-xs bg-gray-200 px-2 py-1 rounded">
+                  <span key={index} className="text-xs text-[white] bg-[#0F1431] px-2 py-1 rounded">
                     {skill}
                   </span>
                 ))}
