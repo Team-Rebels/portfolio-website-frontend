@@ -11,6 +11,7 @@ const Experiences = () => {
   return (
     <PagesLayout
       headerText="Experiences"
+      headerTextClassName="text-[#0F1431]" 
       buttonText="Add New Experience"
       onClick={() => navigate('/dashboard/experiences/addExperience')}
     >

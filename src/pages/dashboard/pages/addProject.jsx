@@ -35,7 +35,7 @@ const AddProject = () => {
   };
 
   return (
-    <PagesLayout headerText="Add New Project" buttonText="" onClick={() => {}}>
+    <PagesLayout headerText="Add New Project" headerTextClassName="text-[#0F1431]"  buttonText="" onClick={() => {}}>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700">Project Title</label>

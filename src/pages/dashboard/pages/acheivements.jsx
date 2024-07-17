@@ -32,6 +32,7 @@ const Achievements = () => {
   return (
     <PagesLayout
       headerText="Achievements"
+      headerTextClassName="text-[#0F1431]" 
       buttonText="Add New Achievement"
       onClick={() => navigate('/dashboard/achievements/addAchievement')}
     >
