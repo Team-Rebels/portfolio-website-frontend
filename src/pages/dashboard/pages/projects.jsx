@@ -24,7 +24,7 @@ const Projects = ({ projects }) => {
               />
             )}
             <div className="mt-3 text-lg font-semibold">{project.title}</div>
-            <div className="text-gray-600 mt-2">Technologies Used: {project.technologies}</div>
+           
           </div>
         ))}
       </div>

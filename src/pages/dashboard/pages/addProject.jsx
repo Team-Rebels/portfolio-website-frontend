@@ -8,26 +8,19 @@ const AddProject = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [technologies, setTechnologies] = useState('');
   const [projectUrl, setProjectUrl] = useState('');
-  const [githubUrl, setGithubUrl] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [role, setRole] = useState('');
+  const [contributors, setContributors] = useState('');
   const [thumbnailImage, setThumbnailImage] = useState(null);
-  const [screenshots, setScreenshots] = useState([]);
-
+ 
   const handleThumbnailChange = (e) => {
     if (e.target.files[0]) {
       setThumbnailImage(e.target.files[0]);
     }
   };
 
-  const handleScreenshotsChange = (e) => {
-    if (e.target.files) {
-      setScreenshots([...screenshots, ...Array.from(e.target.files)]);
-    }
-  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -56,16 +49,7 @@ const AddProject = () => {
             required
           ></textarea>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Technologies Used</label>
-          <input
-            type="text"
-            value={technologies}
-            onChange={(e) => setTechnologies(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-            placeholder="e.g., React, Node.js, MongoDB"
-          />
-        </div>
+        
         <div>
           <label className="block text-sm font-medium text-gray-700">Project URL</label>
           <input
@@ -75,15 +59,8 @@ const AddProject = () => {
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">GitHub URL</label>
-          <input
-            type="url"
-            value={githubUrl}
-            onChange={(e) => setGithubUrl(e.target.value)}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-          />
-        </div>
+        
+      
         <div className="flex space-x-4">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700">Start Date</label>
@@ -105,11 +82,12 @@ const AddProject = () => {
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Your Role</label>
+          <label className="block text-sm font-medium text-gray-700">Contributers</label>
           <input
             type="text"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
+             name="contributors"
+            value={contributors}
+            onChange={(e) => setContributors(e.target.value)}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
@@ -122,16 +100,7 @@ const AddProject = () => {
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Project Screenshots</label>
-          <input
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleScreenshotsChange}
-            className="mt-1 p-2 w-full border border-gray-300 rounded"
-          />
-        </div>
+        
         <div className="flex justify-end">
           <button
             type="button"
