@@ -1,217 +1,178 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import signup from '../../assets/images/signup.svg'
+import signup from '../../assets/images/signup1.jpg';
 import { useEffect, useState } from 'react';
 import { apiCheckUserNameExists, apiSigUp } from '../../services/auth';
 import { toast } from 'react-toastify';
+import Loader from '../../components/loader';
+import { debounce } from 'lodash';
 
 
 const SignUp = () => {
-  const [isSubmitting, setIsSubmitting] = useState (false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(false);
-  const [usernameNotAvailable, setUsernameNotAvailable] = useState (false);
+  const [usernameNotAvailable, setUsernameNotAvailable] = useState(false);
+  const [isUsernameLoading, setIsUsernameLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const checkUserName = async(userName) => {
+  const checkUserName = async (userName) => {
+    console.log("i've been called");
+    setIsUsernameLoading(true);
+
     try {
-      const res = await apiCheckUserNameExists(userName)
-      console.log(res.data);
-      const user =res.data;
-      if(user) {
+      const res = await apiCheckUserNameExists(userName);
+      const user = res.data;
+      if (user) {
         setUsernameAvailable(true);
-      }else{
-         setUsernameNotAvailable(true);
-       }
-      } catch (error) {
-        console.log(error);
+        setUsernameAvailable(false)
+      } else {
+        setUsernameNotAvailable(true);
+        setUsernameNotAvailable(false)
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occured!");
+
+    }finally{
+      setIsUsernameLoading(false)
     }
   };
 
-  const userNameWatch = watch("userName")
-  console.log(userNameWatch);
+  const userNameWatch = watch("userName");
 
   useEffect(() => {
-    if(userNameWatch){
-      checkUserName(userNameWatch);
+    const debounceSearch = debounce(async () => {
+      if (userNameWatch) {
+        await checkUserName(userNameWatch);
+      }
+    }, 1000)
+
+    debounceSearch()
+    return () => {
+      debounceSearch.cancel();
     }
-  }, [userNameWatch]); 
+  }, [userNameWatch]);
 
   const onSubmit = async (data) => {
-    console.log(data);
     setIsSubmitting(true);
 
     let payload = {
       firstName: data.firstName,
       lastName: data.lastName,
       otherNames: data.otherNames ? data.otherNames : "",
-      username: data.username,
+      username: data.userName,
       password: data.password,
       email: data.email,
       confirmedPassword: data.password,
     };
-    if (data.otherNames) {
-      payload = {...payload, otherNames:data.otherNames};
-    }
+
     try {
       const res = await apiSigUp(payload);
-      console.log(res.data);
-      toast.success(res.data.user);
-      setTimeout(() =>
-      {
-        navigate("/login")
-      }, 5000)
-
+      toast.success("Signup successful");
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
     } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+      toast.error("An error occured!");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-
   return (
-
-    <div className='grid grid-cols-2 h-screen w-full'>
-      <div className='flex items-center bg-primary/60'>
-
-        <div className='mr-'>
-          {<img src={signup} alt="Signup" className="w-96 h-[550px] mt-20" />}
-        </div>
-
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)} className='flex items-center justify-center h-[550px] w-96 bg-blue-400 rounded-lg ' >
-
-            <div>
-              <div>
-                <div className="flex gap-x-6 w-15 mt-5  text-black">
-                  <label htmlFor="firstName" className="font-semibold">Firstname :</label>
-                  <input
-                    id="firstName"
-                    type="text"
-                    placeholder="Enter your first name" className='border-2 p-2 rounded-md'
-                    {...register('firstName', {
-                    required: 'Firstname is required'
-                    //minlength: 2
-                    })}
-                  />
-                  {errors.firstName && (
-                    <p className='text-red-500'>{errors.firstName.message}</p>
-                  )}
-                </div>
-
-                <div className='flex gap-x-6 w-15 mt-5  text-black pl-2'>
-                  <label htmlFor="lastName" className="font-semibold">Lastname :</label>
-                  <input
-                    id="lastName"
-                    type="text"
-                    placeholder="Enter your last name" className='border-2 p-2 rounded-md'
-                    {...register('lastName', {
-                    required: 'Lastname is required'
-                    //minlength: 8
-                    })}
-                  />
-                  {errors.lastName && (
-                    <p className='text-red-500'>{errors.lastName.message}</p>)}
-                </div>
-              </div>
-                <div className="flex gap-x-6 w-15 mt-5  text-black">
-                  <label htmlFor="othernames" className="font-semibold">Othernames :</label>
-                  <input
-                    id="otherNames"
-                    type="text"
-                    placeholder="Enter your other names" className='border-2 p-2 rounded-md'
-                    {...register('otherNames')}
-                  />
-                </div>
-                <div className="flex gap-x-6 w-15 mt-5  text-black">
-                  <label htmlFor="userName" className="font-semibold">Username :</label>
-                  <input
-                    id="userName"
-                    type="text"
-                    placeholder="Enter your user name" className='border-2 p-2 rounded-md'
-                    {...register('userName', {
-                    required: 'Username is required'
-                    //minlength: 2
-                    })}
-                  />
-                  {errors.userName && (
-                    <p className='text-red-500'>{errors.userName.message}</p>
-                  )}
-                </div>
-                <div className='flex gap-x-6 w-15 mt-5 font-semibold  text-black pl-7'>
-                  <label htmlFor="email">Email :</label>
-                  <input
-                    id='email'
-                    type="text"
-                    placeholder="Enter your email" className='border-2 p-2 rounded-md'
-                    {...register('email', {
-                    required: 'Email is required'
-                    //minlength: 8
-                    })}
-                  />
-                    {errors.email && (
-                    <p className='text-white'>{errors.email.message}</p>)}
-                    {
-                      usernameAvailable && <p className='text-white'>username is Available</p>
-                    }
-                    {
-                      usernameNotAvailable && <p className='text-red-500'>username is already taken!</p>
-                    }
-
-                </div>
-
-                <div className='flex gap-x-6 w-15 mt-5 font-semibold  text-black'>
-                  <label htmlFor="password">Password :</label>
-                  <input
-                    id='current-password'
-                    type="current-password"
-                    placeholder="Enter your password" className='border-2 p-2 rounded-md'
-                    {...register('current-password', {
-                      required: 'Password is required'
-                      //minlength: 8
-                    })}
-                  />
-                  {errors.password && (
-                    <p className='text-white'>{errors.password.message}</p>)}
-
-                </div>
-                <div className='flex flex-col'>
-                  <button type="submit" className='bg-white w-15 p-2 
-                       font-semibold border-2 rounded-md mt-5'>
-                    {isSubmitting? "Loading..." : "Signup"}
-                  </button>
-
-                  {/* <label>
-                    <input
-                      type="checkbox" checked name="remember" />
-                    Remember me
-                  </label> */}
-                </div>
-
-                <div className='flex flex-col w-15'>
-                  <p>Already have an account?</p>
-                  <div className="border-2 rounded-md p-2 text-center font-semibold bg-white">
-                    <Link to="/login">
-                      Login
-                    </Link>
-                  </div>
-                </div>
-
-
-                <div className="border-2 rounded-sm p-2 text-center bg-white font-semibold mt-5" >
-                  <button type="button">Cancel</button>
-                </div>
+    <div className='grid grid-cols-1 md:grid-cols-2 h-screen w-full'>
+      <div className='hidden md:flex items-center justify-center bg-primary'>
+        <img src={signup} alt="Signup" className="w-full h-auto ml-[50px]" />
+      </div>
+      <div className='flex items-center justify-center'>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-3/4 max-w-md bg-white p-8 rounded-lg shadow-lg'>
+          <h2 className='text-2xl font-bold mb-6 text-center'>Sign Up on Captura</h2>
+          <div className='mb-4'>
+            <label htmlFor="firstName" className='block text-gray-700 font-semibold'>First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              placeholder="Enter your first name"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('firstName', { required: 'First name is required' })}
+            />
+            {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="lastName" className='block text-gray-700 font-semibold'>Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Enter your last name"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('lastName', { required: 'Last name is required' })}
+            />
+            {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="otherNames" className='block text-gray-700 font-semibold'>Other Names</label>
+            <input
+              id="otherNames"
+              type="text"
+              placeholder="Enter your other names"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('otherNames')}
+            />
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="userName" className='block text-gray-700 font-semibold'>Username</label>
+            <input
+              id="userName"
+              type="text"
+              placeholder="Enter your username"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('userName', { required: 'Username is required' })}
+            />
+            {errors.userName && <p className='text-red-500'>{errors.userName.message}</p>}
+            <div className='flex items-center gap-y-2'>
+              {isUsernameLoading && <Loader/>}
+              {usernameAvailable && <p className='text-green-500'>Username is available</p>}
+              {usernameNotAvailable && <p className='text-red-500'>Username is already taken!</p>}
             </div>
-          </form>
-        </div>
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="email" className='block text-gray-700 font-semibold'>Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('email', { required: 'Email is required' })}
+            />
+            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+          </div>
+          <div className='mb-4'>
+            <label htmlFor="password" className='block text-gray-700 font-semibold'>Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              className='border border-gray-300 p-2 w-full rounded-md'
+              {...register('password', { required: 'Password is required' })}
+            />
+            {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+          </div>
+          <button type="submit" className='bg-blue-500 text-white p-2 w-full rounded-md font-semibold'>
+            {isSubmitting ? "Loading..." : "Sign Up"}
+          </button>
+          <div className='flex justify-between items-center mt-4'>
+            <p>Already have an account? <Link to="/login" className='text-blue-500'>Login</Link></p>
+          </div>
+          <button type="button" className='mt-4 bg-gray-300 text-gray-700 p-2 w-full rounded-md' onClick={() => navigate("/")}>
+            Cancel
+          </button>
+        </form>
       </div>
     </div>
-  )};
-
+  );
+};
 
 export default SignUp;
-

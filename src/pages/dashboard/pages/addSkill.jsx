@@ -17,7 +17,7 @@ const AddSkill = () => {
   };
 
   return (
-    <PagesLayout headerText="Add New Skill" buttonText="" onClick={() => {}}>
+    <PagesLayout headerText="Add New Skill" headerTextClassName="text-[#0F1431]"  buttonText="" onClick={() => {}}>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700">

@@ -4,8 +4,8 @@ import { apiLogin } from "../../services/auth";
 import { useState } from 'react';
 import background from "../../assets/images/background.avif"
 import googlelogo from "../../assets/images/googlelogo.png"
-import { ColorRing } from "react-loader-spinner";
 import { toast } from "react-toastify";
+import Loader from "../../components/loader";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -30,7 +30,7 @@ const LogIn = () => {
 
     } catch (error) {
       console.log(error);
-      toast.error(error);
+      toast.error("An error occured!");
 
     } finally {
       setIsSubmitting(false)
@@ -46,21 +46,71 @@ const LogIn = () => {
           <img src={background} alt="Login image" className="object-cover h-full w-full" />
         </div>
 
-        <div className="w-full md:w-1/2 p-8">
-          <h3 className="font-extrabold text-2xl text-center text-gray-700 mb-4">Welcome Back.</h3>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="space-y-2">
-              <label
-                htmlFor="email" className="font-semibold text-blue-600 mb-0">Email</label>
-              <input
-                type="text"
-                id="email"
-                className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
-                {
-                ...register("email", { required: "Enter your email !" })
-                }
-              />
-              {errors.email && (<p className="text-red-500 text-sm">{errors.email.message}</p>)}
+
+        <div className="w-1/2">
+          <div className="flex flex-col justify-center text-left ">
+            <h3 className="font-extrabold text-center">Welcome Back.</h3>
+            <p></p>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
+              <div className="flex flex-col space-y-1">
+                <label
+                  htmlFor="email"
+                  className="font-semibold text-[#1826ef] mb-0">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  className="h-10 w-1/2 px-2 py-1 border-blue-500 border-2 rounded-lg "
+                  {
+                  ...register("email", { required: "Enter your email !" })
+                  }
+                />
+                {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
+
+                <label
+                  htmlFor="password"
+                  className="font-semibold text-[#1826ef] mb-0 "
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  className="h-10 w-1/2 px-2 py-1 border-blue-500 border-2 rounded-lg"
+                  {
+                  ...register("password", { required: "Enter your password !" })
+                  }
+                />
+                {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
+                <div className=" m-10 ml-16">
+                  <button
+                    type="submit"
+                    className="mt-10 mb-5 h-8 w-40 bg-white text-blue-500  border-blue-500 border-2 rounded-lg hover:bg-[#a1739b]">
+                    {isSubmitting ? <Loader /> : "Login"}
+                  </button>
+                  <div className="flex items-center">
+                    <hr className="flex-1 border-gray-300" />
+                    <span className="mx-2 text-gray-600">or</span>
+                    <hr className="flex-1 border-gray-300" />
+                  </div>
+
+                  <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2">
+                    <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />
+                  </button>
+
+
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div className=" inline-block align-baseline">
+            <p>Not registered?</p>
+
+            <div className="text-justify">
+              <span className="underline">Forgot password?</span>
             </div>
 
             <div className="space-y-2"> 
