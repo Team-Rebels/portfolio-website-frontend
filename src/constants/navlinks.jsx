@@ -1,4 +1,4 @@
-import { Layers3, FolderOpen, BriefcaseBusiness, Trophy, BookCopy, MessageSquareText } from 'lucide-react';
+import { Layers3, FolderOpen, BriefcaseBusiness, Trophy, BookCopy, MessageSquareText, GraduationCap, HandHeart  } from 'lucide-react';
 import { Award, BookText, FolderKanban, MessageCircleCode,} from "lucide-react";
 
 
@@ -37,9 +37,19 @@ const D = {
       link: '/dashboard/experiences',
     },
     {
+      icon: <GraduationCap />,
+      text: 'Education',
+      link: '/dashboard/education',
+    },
+    {
       icon: <Trophy />,
       text: 'Achievements',
       link: '/dashboard/achievements',
+    },
+    {
+      icon: <HandHeart />,
+      text: 'Volunteering',
+      link: '/dashboard/volunteering',
     },
     {
       icon: <BookCopy />,

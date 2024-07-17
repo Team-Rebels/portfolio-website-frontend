@@ -19,6 +19,10 @@ import AddAchievement from './pages/dashboard/pages/addAcheivements';
 import Website1 from './assets/images/website.jpg';
 import Website4 from './assets/images/website4.jpg';
 import Website5 from './assets/images/website5.jpg';
+import AddEducation from './pages/dashboard/pages/addEducation';
+import Education from './pages/dashboard/pages/education';
+import Volunteering from './pages/dashboard/pages/volunteering';
+import AddVolunteering from './pages/dashboard/pages/addVolunteering';
 
 
 
@@ -121,6 +125,24 @@ function App() {
           path: 'socials/addsocial',
           element: <AddSocial />,
         },
+        {
+          path: 'education',
+          element: <Education />,
+        },
+        {
+          path: 'education/addeducation',
+          element: <AddEducation />,
+        },
+        {
+          path: 'volunteering',
+          element: <Volunteering />,
+        },
+        {
+          path: 'volunteering/addvolunteering',
+          element: <AddVolunteering />,
+        },
+
+
       ],
     },
     {

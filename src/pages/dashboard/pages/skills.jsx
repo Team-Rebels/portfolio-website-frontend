@@ -11,10 +11,11 @@ const Skills = () => {
   return (
     <PagesLayout
       headerText="Skills"
+      headerTextClassName="text-[#0F1431]" 
       buttonText="Add New Skill"
       onClick={() => navigate('/dashboard/skills/addSkill')}
     > 
-      <div className="grid grid-cols-4 gap-6 ">
+      <div className="grid grid-cols-4 gap-6 pt-20">
         {D.SKILLS.map(({ name, levelOfProficiency, image }, index) => (
           <div key={index} className="rounded-xl h-40 shadow-md flex flex-col bg-white p-5">
             

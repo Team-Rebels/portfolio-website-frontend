@@ -9,6 +9,7 @@ const Socials = () => {
   return (
     <PagesLayout
       headerText="Socials"
+      headerTextClassName="text-[#0F1431]" 
       buttonText="Add New Social Link"
       onClick={() => navigate('/dashboard/socials/addsocial')}
     >
