@@ -1,38 +1,58 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import signup from '../../assets/images/signup.svg';
+import signup from '../../assets/images/signup1.jpg';
 import { useEffect, useState } from 'react';
 import { apiCheckUserNameExists, apiSigUp } from '../../services/auth';
 import { toast } from 'react-toastify';
+import Loader from '../../components/loader';
+import { debounce } from 'lodash';
+
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState(false);
   const [usernameNotAvailable, setUsernameNotAvailable] = useState(false);
+  const [isUsernameLoading, setIsUsernameLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   const checkUserName = async (userName) => {
+    console.log("i've been called");
+    setIsUsernameLoading(true);
+
     try {
       const res = await apiCheckUserNameExists(userName);
       const user = res.data;
       if (user) {
         setUsernameAvailable(true);
+        setUsernameAvailable(false)
       } else {
         setUsernameNotAvailable(true);
+        setUsernameNotAvailable(false)
       }
     } catch (error) {
       console.log(error);
+      toast.error("An error occured!");
+
+    }finally{
+      setIsUsernameLoading(false)
     }
   };
 
   const userNameWatch = watch("userName");
 
   useEffect(() => {
-    if (userNameWatch) {
-      checkUserName(userNameWatch);
+    const debounceSearch = debounce(async () => {
+      if (userNameWatch) {
+        await checkUserName(userNameWatch);
+      }
+    }, 1000)
+
+    debounceSearch()
+    return () => {
+      debounceSearch.cancel();
     }
   }, [userNameWatch]);
 
@@ -56,7 +76,7 @@ const SignUp = () => {
         navigate("/login");
       }, 5000);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("An error occured!");
     } finally {
       setIsSubmitting(false);
     }
@@ -65,7 +85,7 @@ const SignUp = () => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 h-screen w-full'>
       <div className='hidden md:flex items-center justify-center bg-primary'>
-        <img src={signup} alt="Signup" className="w-full h-auto" />
+        <img src={signup} alt="Signup" className="w-full h-auto ml-[50px]" />
       </div>
       <div className='flex items-center justify-center'>
         <form onSubmit={handleSubmit(onSubmit)} className='w-3/4 max-w-md bg-white p-8 rounded-lg shadow-lg'>
@@ -112,8 +132,11 @@ const SignUp = () => {
               {...register('userName', { required: 'Username is required' })}
             />
             {errors.userName && <p className='text-red-500'>{errors.userName.message}</p>}
-            {usernameAvailable && <p className='text-green-500'>Username is available</p>}
-            {usernameNotAvailable && <p className='text-red-500'>Username is already taken!</p>}
+            <div className='flex items-center gap-y-2'>
+              {isUsernameLoading && <Loader/>}
+              {usernameAvailable && <p className='text-green-500'>Username is available</p>}
+              {usernameNotAvailable && <p className='text-red-500'>Username is already taken!</p>}
+            </div>
           </div>
           <div className='mb-4'>
             <label htmlFor="email" className='block text-gray-700 font-semibold'>Email</label>
