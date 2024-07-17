@@ -5,7 +5,7 @@ import { useState } from 'react';
 import loginimg from "../../assets/images/loginimg.jpg"
 import googlelogo from "../../assets/images/googlelogo.png"
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import ColorRing from "../../components/loader";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -79,7 +79,7 @@ const LogIn = () => {
                   htmlFor="password" 
                   className="font-semibold text-[#1826ef] mb-0">Password</label>
                 <input
-                  type="text"
+                  type="password"
                   id="password"
                   className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
                   {
