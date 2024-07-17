@@ -10,9 +10,9 @@ import { debounce } from 'lodash';
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [usernameAvailable, setUsernameAvailable] = useState(false);
-  const [usernameNotAvailable, setUsernameNotAvailable] = useState(false);
-  const [isUsernameLoading, setIsUsernameLoading] = useState(false);
+  const [userNameAvailable, setUserNameAvailable] = useState(false);
+  const [userNameNotAvailable, setUserNameNotAvailable] = useState(false);
+  const [isUserNameLoading, setIsUserNameLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,24 +20,24 @@ const SignUp = () => {
 
   const checkUserName = async (userName) => {
     console.log("i've been called");
-    setIsUsernameLoading(true);
+    setIsUserNameLoading(true);
 
     try {
       const res = await apiCheckUserNameExists(userName);
       const user = res.data;
       if (user) {
-        setUsernameAvailable(true);
-        setUsernameAvailable(false)
+        setUserNameAvailable(true);
+        setUserNameAvailable(false)
       } else {
-        setUsernameNotAvailable(true);
-        setUsernameNotAvailable(false)
+        setUserNameNotAvailable(true);
+        setUserNameNotAvailable(false)
       }
     } catch (error) {
       console.log(error);
       toast.error("An error occured!");
 
     }finally{
-      setIsUsernameLoading(false)
+      setIsUserNameLoading(false)
     }
   };
 
@@ -62,12 +62,16 @@ const SignUp = () => {
     let payload = {
       firstName: data.firstName,
       lastName: data.lastName,
-      otherNames: data.otherNames ? data.otherNames : "",
-      username: data.userName,
+      userName: data.userName,
       password: data.password,
       email: data.email,
       confirmedPassword: data.password,
+
     };
+    if (data.otherName) {
+      payload = {...payload, otherName: data.otherName };
+
+    }
 
     try {
       const res = await apiSigUp(payload);
@@ -113,13 +117,13 @@ const SignUp = () => {
             {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
           </div>
           <div className='mb-4'>
-            <label htmlFor="otherNames" className='block text-gray-700 font-semibold'>Other Names</label>
+            <label htmlFor="otherName" className='block text-gray-700 font-semibold'>Other Name</label>
             <input
-              id="otherNames"
+              id="otherName"
               type="text"
-              placeholder="Enter your other names"
+              placeholder="Enter your other name"
               className='border border-gray-300 p-2 w-full rounded-md'
-              {...register('otherNames')}
+              {...register('otherName')}
             />
           </div>
           <div className='mb-4'>
@@ -133,9 +137,9 @@ const SignUp = () => {
             />
             {errors.userName && <p className='text-red-500'>{errors.userName.message}</p>}
             <div className='flex items-center gap-y-2'>
-              {isUsernameLoading && <Loader/>}
-              {usernameAvailable && <p className='text-green-500'>Username is available</p>}
-              {usernameNotAvailable && <p className='text-red-500'>Username is already taken!</p>}
+              {isUserNameLoading && <Loader/>}
+              {userNameAvailable && <p className='text-green-500'>Username is available</p>}
+              {userNameNotAvailable && <p className='text-red-500'>Username is already taken!</p>}
             </div>
           </div>
           <div className='mb-4'>

@@ -3,9 +3,65 @@ import Charles from '../../../assets/images/profile.jpg';
 import PagesLayout from '../layouts/pagesLayout';
 
 import D from "../../../constants/navlinks";
+import { apiGetSkills } from '../../../services/skills';
+import { apiGetAchievements } from '../../../services/achievements';
+import { apiGetProjects } from '../../../services/projects';
+import { apiGetVolunteering } from '../../../services/volunteering';
+import { apiGetExperience } from '../../../services/experience';
+import { apiGetEducation } from '../../../services/education';
 
 
 const Overview = () => {
+
+  const [data, setData] = useState({
+    skills: 0,
+    projects: 0,
+    achievements: 0,
+    volunteering: 0,
+    education: 0,
+    experience: 0,
+
+  });
+  const [isLoading, setIsLoading] = useState(false)
+
+  const getData = async() => {
+    setIsLoading(true)
+    try {
+      const [totalSkills, totalAchievements, totalProjects, totalVolunteering, totalEducation, totalExperience] = await Promise.all([ 
+        apiGetSkills,
+        apiGetAchievements,
+        apiGetProjects,
+        apiGetVolunteering,
+        apiGetEducation,
+        apiGetExperience,
+
+      ]);
+
+      const newData = {
+        skills: totalSkills.length,
+        projects: totalProjects.length,
+        achievements: totalAchievements.length,
+        volunteering: totalVolunteering.length,
+        education: totalEducation.length,
+        experience: totalExperience.length,
+    
+
+      };
+      setData(newData);
+
+
+    } catch (error) {
+      console.log(error)
+    }finally {
+      setIsLoading(false);
+    }
+  }; 
+
+  useEffect(() => {
+   //getData();
+  }, []);
+
+
   return (
     <div className="p-8 bg-white-100">
       <div className="grid grid-cols-3 gap-6">

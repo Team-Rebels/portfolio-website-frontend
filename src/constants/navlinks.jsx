@@ -12,7 +12,7 @@ import TypescriptLogo from '../assets/images/typescript-logo.png';
 import ReactNativeLogo from '../assets/images/react-logo.png';
 
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
-import Acheivements from "../pages/dashboard/pages/acheivements";
+import Acheivements from "../pages/dashboard/pages/achievements";
 import Experiences from "../pages/dashboard/pages/experiences";
 import Overview from "../pages/dashboard/pages/overview";
 import Projects from "../pages/dashboard/pages/projects";
