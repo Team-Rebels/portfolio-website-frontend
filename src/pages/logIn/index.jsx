@@ -25,10 +25,13 @@ const LogIn = () => {
         password: data.password
       });
       console.log("Response", res.data);
-      toast.success(res.data);
-      setTimeout(() => { navigate("/dashboard") }, 3000);
+      localStorage.setItem("accessToken", res.data.accessToken)
 
-    } catch (error) {
+
+      toast.success(res.data.message);
+      setTimeout (() => {navigate("/dashboard")}, 3000);
+
+    } catch (error) { 
       console.log(error);
       toast.error("An error occured!");
 
