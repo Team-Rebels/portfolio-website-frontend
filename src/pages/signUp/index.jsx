@@ -26,8 +26,8 @@ const SignUp = () => {
       const res = await apiCheckUserNameExists(userName);
       const user = res.data;
       if (user) {
-        setUserNameAvailable(true);
-        setUserNameAvailable(false)
+        setUserNameAvailable(false);
+        setUserNameAvailable(true)
       } else {
         setUserNameNotAvailable(true);
         setUserNameNotAvailable(false)
@@ -65,7 +65,7 @@ const SignUp = () => {
       userName: data.userName,
       password: data.password,
       email: data.email,
-      confirmedPassword: data.password,
+      confirmPassword: data.password,
 
     };
     if (data.otherName) {
@@ -75,11 +75,13 @@ const SignUp = () => {
 
     try {
       const res = await apiSigUp(payload);
+      console.log("Signup response:", res);
       toast.success("Signup successful");
       setTimeout(() => {
         navigate("/login");
       }, 5000);
     } catch (error) {
+      console.log("Signup error:", error.response || error.message);
       toast.error("An error occured!");
     } finally {
       setIsSubmitting(false);
