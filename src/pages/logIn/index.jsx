@@ -2,10 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { apiLogin } from "../../services/auth";
 import { useState } from 'react';
-import background from "../../assets/images/background.avif";
-import googlelogo from "../../assets/images/googlelogo.png";
+import loginimg from "../../assets/images/loginimg.jpg"
+import googlelogo from "../../assets/images/googlelogo.png"
 import { toast } from "react-toastify";
-import Loader from "../../components/loader";
+import ColorRing from "../../components/loader";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,21 +14,23 @@ const LogIn = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors }
   } = useForm();
 
   const onSubmit = async (data) => {
     console.log(data);
-    setIsSubmitting(true);
+    setIsSubmitting(true)
     try {
       const res = await apiLogin({
         email: data.email,
         password: data.password
       });
       console.log("Response", res.data);
-      localStorage.setItem("accessToken", res.data.accessToken);
-      toast.success(res.data.message);
-      setTimeout(() => { navigate("/dashboard"); }, 3000);
+      localStorage.setItem("accessToken", res.data.accessToken)
+      toast.success(res.data);
+      setTimeout(() => { navigate("/dashboard") }, 5000);
+
     } catch (error) {
       console.log(error);
       toast.error("An error occurred!");
@@ -41,7 +43,7 @@ const LogIn = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="flex w-full max-w-4xl bg-white shadow-md rounded-lg overflow-hidden">
         <div className="w-1/2 h-auto hidden md:block">
-          <img src={background} alt="Login image" className="object-cover h-full w-full" />
+          <img src={loginimg} alt="Login image" className="object-cover h-full w-full" />
         </div>
         <div className="w-1/2 p-8">
           <div className="flex flex-col justify-center text-left">
@@ -97,4 +99,5 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+
+export default LogIn
