@@ -15,7 +15,7 @@ import AddProject from './pages/dashboard/pages/addProject';
 import AddExperience from './pages/dashboard/pages/addExperience';
 import AddSocial from './pages/dashboard/pages/addSocial';
 import Achievements from './pages/dashboard/pages/achievements';
-import AddAchievement from './pages/dashboard/pages/addAcheivements';
+import AddAchievement from './pages/dashboard/pages/addAchievements';
 import Website1 from './assets/images/website.jpg';
 import Website4 from './assets/images/website4.jpg';
 import Website5 from './assets/images/website5.jpg';
