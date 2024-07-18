@@ -145,11 +145,10 @@ const LogIn = () => {
 
         <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2">
           <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />Sign in with Google</button>
-
-      </form>
-      <div className="mt-4 text-center">
-        <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
-        <p className="text-gray-600 mt-2">Forgot password?</p>
+        <div className="mt-4 text-center">
+         <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
+          < p className="text-gray-600 mt-2">Forgot password?</p>
+        </div>
       </div>
     </div>
       </div >
