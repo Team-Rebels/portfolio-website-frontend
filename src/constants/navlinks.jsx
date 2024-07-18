@@ -5,14 +5,14 @@ import { Award, BookText, FolderKanban, MessageCircleCode,} from "lucide-react";
 import GitHubLogo from "../assets/images/github-logo.png";
 import InstagramLogo from "../assets/images/instagram.png";
 import LinkedInLogo from "../assets/images/linkedin.png";
-import JavascriptLogo from '../assets/images/javascript-logo.png';
-import HTMLLogo from '../assets/images/html-logo.jpg';
-import CSSLogo from '../assets/images/CSS-logo.jpg';
-import TypescriptLogo from '../assets/images/typescript-logo.png';
+import JavascriptLogo from '../assets/images/js.png';
+import HTMLLogo from '../assets/images/html-logo.png';
+import CSSLogo from '../assets/images/CSS-logo.png';
+
 import ReactNativeLogo from '../assets/images/react-logo.png';
 
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
-import Acheivements from "../pages/dashboard/pages/acheivements";
+import Acheivements from "../pages/dashboard/pages/achievements";
 import Experiences from "../pages/dashboard/pages/experiences";
 import Overview from "../pages/dashboard/pages/overview";
 import Projects from "../pages/dashboard/pages/projects";
@@ -79,20 +79,16 @@ const D = {
       levelOfProficiency: 'Intermediate',
       images: CSSLogo,
     },
-    {
-      name: 'Typescript',
-      levelOfProficiency: 'Beginner',
-      images: TypescriptLogo,
-    },
+    
     {
       name: 'React Native',
       levelOfProficiency: 'Beginner',
-      images: JavascriptLogo,
+      images: ReactNativeLogo,
     },
     {
-      name: 'Tailwind CSS',
-      levelOfProficiency: 'Beginner',
-      images: '',
+      name: 'HTML',
+      levelOfProficiency: 'Advanced',
+      images: HTMLLogo,
     },
 
   ],
@@ -145,3 +141,6 @@ const D = {
 };
 
 export default D;
+
+
+
