@@ -1,0 +1,52 @@
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('../assets/images/heroP.jpg') no-repeat center center/cover;
+}
+
+.hero-section {
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.signup-button,
+.search-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button {
+  background-color: #007bff;
+  margin-right: 3rem;
+  border-radius:6px ;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+.search-button {
+  background-color: #28a745;
+  border-radius:6px ;
+}
+
+.search-button:hover {
+  background-color: #1e7e34;
+}
