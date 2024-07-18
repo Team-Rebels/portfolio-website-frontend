@@ -5,7 +5,7 @@ import { useState } from 'react';
 import loginimg from "../../assets/images/loginimg.jpg"
 import googlelogo from "../../assets/images/googlelogo.png"
 import { toast } from "react-toastify";
-import ColorRing from "../../components/loader";
+import Loader from "../../components/loader";
 
 const LogIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
