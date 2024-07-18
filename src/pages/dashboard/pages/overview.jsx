@@ -10,6 +10,7 @@ import { apiGetProjects } from '../../../services/projects';
 import { apiGetVolunteering } from '../../../services/volunteering';
 import { apiGetExperience } from '../../../services/experience';
 import { apiGetEducation } from '../../../services/education';
+import PageLoader from '../../../components/PageLoader';
 
 
 const Overview = () => {
