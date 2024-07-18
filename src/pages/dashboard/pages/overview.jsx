@@ -29,12 +29,12 @@ const Overview = () => {
     setIsLoading(true)
     try {
       const [totalSkills, totalAchievements, totalProjects, totalVolunteering, totalEducation, totalExperience] = await Promise.all([ 
-        apiGetSkills,
-        apiGetAchievements,
-        apiGetProjects,
-        apiGetVolunteering,
-        apiGetEducation,
-        apiGetExperience,
+        apiGetSkills(),
+        apiGetAchievements(),
+        apiGetProjects(),
+        apiGetVolunteering(),
+        apiGetEducation(),
+        apiGetExperience(),
 
       ]);
       console.log("Total Skills", totalSkills);
