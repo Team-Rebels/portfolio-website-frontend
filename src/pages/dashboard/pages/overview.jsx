@@ -1,6 +1,7 @@
 import BImage from '../../../assets/images/Banner.png';
 import Charles from '../../../assets/images/profile.jpg';
 import PagesLayout from '../layouts/pagesLayout';
+import React, { useState, useEffect } from 'react';
 
 import D from "../../../constants/navlinks";
 import { apiGetSkills } from '../../../services/skills';
@@ -85,5 +86,4 @@ const Overview = () => {
 };
 
 export default Overview;
-
 
