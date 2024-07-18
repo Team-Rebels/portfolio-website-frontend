@@ -64,8 +64,8 @@ const SignUp = () => {
       lastName: data.lastName,
       userName: data.userName,
       password: data.password,
+      confirmPassword: data.password,
       email: data.email,
-      confirmedPassword: data.password,
 
     };
     if (data.otherName) {
@@ -102,6 +102,7 @@ const SignUp = () => {
               placeholder="Enter your first name"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('firstName', { required: 'First name is required' })}
+              autoComplete="given-name"
             />
             {errors.firstName && <p className='text-red-500'>{errors.firstName.message}</p>}
           </div>
@@ -113,6 +114,7 @@ const SignUp = () => {
               placeholder="Enter your last name"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('lastName', { required: 'Last name is required' })}
+              autoComplete="family-name"
             />
             {errors.lastName && <p className='text-red-500'>{errors.lastName.message}</p>}
           </div>
@@ -124,6 +126,7 @@ const SignUp = () => {
               placeholder="Enter your other name"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('otherName')}
+              autoComplete="additional-name"
             />
           </div>
           <div className='mb-4'>
@@ -134,6 +137,7 @@ const SignUp = () => {
               placeholder="Enter your username"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('userName', { required: 'Username is required' })}
+              autoComplete="username"
             />
             {errors.userName && <p className='text-red-500'>{errors.userName.message}</p>}
             <div className='flex items-center gap-y-2'>
@@ -150,6 +154,7 @@ const SignUp = () => {
               placeholder="Enter your email"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('email', { required: 'Email is required' })}
+              autoComplete="email"
             />
             {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
           </div>
@@ -161,6 +166,7 @@ const SignUp = () => {
               placeholder="Enter your password"
               className='border border-gray-300 p-2 w-full rounded-md'
               {...register('password', { required: 'Password is required' })}
+              autoComplete="new-password"
             />
             {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
           </div>
