@@ -27,7 +27,7 @@ const LogIn = () => {
         password: data.password
       });
       console.log("Response", res.data);
-      localStorage.setItem("accessToken",res.data.accessToken)
+      localStorage.setItem("accessToken", res.data.accessToken)
       toast.success(res.data);
       setTimeout(() => { navigate("/dashboard") }, 5000);
 
@@ -58,35 +58,35 @@ const LogIn = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center">
               <div className="flex flex-col space-y-4 w-full">
                 <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="font-semibold text-[#1826ef] mb-0">
-                  Email
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
-                  {
-                  ...register("email", { required: "Enter your email !" })
-                  }
-                />
-                {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
+                  <label
+                    htmlFor="email"
+                    className="font-semibold text-[#1826ef] mb-0">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    id="email"
+                    className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
+                    {
+                    ...register("email", { required: "Enter your email !" })
+                    }
+                  />
+                  {errors.email && (<p className="text-red-500">{errors.email.message}</p>)}
                 </div>
 
-                <div className="space-y-2"> 
-                <label
-                  htmlFor="password" 
-                  className="font-semibold text-[#1826ef] mb-0">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
-                  {
-                  ...register("password", { required: "Enter your password !" })
-                  }
-                />
-                {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="password"
+                    className="font-semibold text-[#1826ef] mb-0">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
+                    {
+                    ...register("password", { required: "Enter your password !" })
+                    }
+                  />
+                  {errors.password && (<p className="text-red-500">{errors.password.message}</p>)}
                 </div>
 
                 <div className="flex items-center justify-between mt-4">
@@ -94,80 +94,81 @@ const LogIn = () => {
                     type="submit"
                     className="h-10 w-full bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-opacity-50">
                     {isSubmitting ? (<ColorRing
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="color-ring-loading"
-              wrapperStyle={{}}
-              wrapperClass="color-ring-wrapper"
-              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']} />) : "Login"}
-                  </button>
-                </div>  
-
-                  <div className="flex items-center mt-4">
-                    <hr className="flex-1 border-gray-300" />
-                    <span className="mx-2 text-gray-600">or</span>
-                    <hr className="flex-1 border-gray-300" />
-                  </div>
-
-
-                  <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2 mx-auto">
-                    <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />
-                    Sign in with Google
+                      visible={true}
+                      height="80"
+                      width="80"
+                      ariaLabel="color-ring-loading"
+                      wrapperStyle={{}}
+                      wrapperClass="color-ring-wrapper"
+                      colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']} />) : "Login"}
                   </button>
                 </div>
+
+                <div className="flex items-center mt-4">
+                  <hr className="flex-1 border-gray-300" />
+                  <span className="mx-2 text-gray-600">or</span>
+                  <hr className="flex-1 border-gray-300" />
+                </div>
+
+
+                <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2 mx-auto">
+                  <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />
+                  Sign in with Google
+                </button>
+              </div>
             </form>
- 
-          <div className="mt-4 text-center">
-            <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
-          </div>
-            
-          <div className=" inline-block align-baseline">
-            <p>Not registered?</p>
 
-            <div className="text-justify">
-              <span className="underline">Forgot password?</span>
+            <div className="mt-4 text-center">
+              <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
             </div>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="password" className="font-semibold text-[#1826ef] mb-0 ">Password
-              </label>
-              <input
-                type="text"
-                id="password"
-                className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
-                {...register("password", { required: "Enter your password !" })} />
-              {errors.password && (<p className="text-red-500 text-sm">{errors.password.message}</p>)}
+            <div className=" inline-block align-baseline">
+              <p>Not registered?</p>
+
+              <div className="text-justify">
+                <span className="underline">Forgot password?</span>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="password" className="font-semibold text-[#1826ef] mb-0 ">Password
+                </label>
+                <input
+                  type="text"
+                  id="password"
+                  className="h-10 w-full px-3 py-2 border-blue-500 border-2 rounded-lg focus:outline-none focus:border-blue-700"
+                  {...register("password", { required: "Enter your password !" })} />
+                {errors.password && (<p className="text-red-500 text-sm">{errors.password.message}</p>)}
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <button
-              type="submit" className="h-10 w-full bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-opacity-50">
-              {isSubmitting ? (<ColorRing
-                visible={true}
-                height="80"
-                width="80"
-                ariaLabel="color-ring-loading"
-                wrapperStyle={{}}
-                wrapperClass="color-ring-wrapper"
-                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']} />) : "Login"}
-            </button>
-          </div>
+            <div className="flex items-center justify-between mt-4">
+              <button
+                type="submit" className="h-10 w-full bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-opacity-50">
+                {isSubmitting ? (<ColorRing
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="color-ring-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="color-ring-wrapper"
+                  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']} />) : "Login"}
+              </button>
+            </div>
 
-          <div className="flex items-center mt-4">
-            <hr className="flex-1 border-gray-300" />
-            <span className="mx-2 text-gray-600">or</span>
-            <hr className="flex-1 border-gray-300" />
-          </div>
+            <div className="flex items-center mt-4">
+              <hr className="flex-1 border-gray-300" />
+              <span className="mx-2 text-gray-600">or</span>
+              <hr className="flex-1 border-gray-300" />
+            </div>
 
-          <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2">
-            <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />Sign in with Google</button>
+            <button className="flex items-center justify-center h-10 border border-blue-500 rounded-lg text-gray-600 hover:bg-gray-100 transition duration-200 w-1/2">
+              <img className="w-5 h-5 mr-2" src={googlelogo} alt="Google logo" />Sign in with Google</button>
 
-          <div className="mt-4 text-center">
-            <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
-            <p className="text-gray-600 mt-2">Forgot password?</p>
+            <div className="mt-4 text-center">
+              <p className="text-gray-600">Not registered? <Link to="/signup" className="text-blue-600 underline">Sign Up</Link></p>
+              <p className="text-gray-600 mt-2">Forgot password?</p>
+            </div>
           </div>
         </div>
       </div>
