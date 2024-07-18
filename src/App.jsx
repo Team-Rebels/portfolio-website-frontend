@@ -23,6 +23,7 @@ import AddEducation from './pages/dashboard/pages/addEducation';
 import Education from './pages/dashboard/pages/education';
 import Volunteering from './pages/dashboard/pages/volunteering';
 import AddVolunteering from './pages/dashboard/pages/addVolunteering';
+import LandingPage from './pages/home';
 
 
 
@@ -71,7 +72,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Home />,
+      element: <LandingPage />,
     },
     {
       path: 'preview',
