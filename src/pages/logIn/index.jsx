@@ -29,7 +29,7 @@ const LogIn = () => {
       console.log("Response", res.data);
       localStorage.setItem("accessToken", res.data.accessToken)
       toast.success(res.data);
-      setTimeout(() => { navigate("/dashboard") }, 5000);
+      setTimeout(() => { navigate("/dashboard") }, 1000);
 
     } catch (error) {
       console.log(error);

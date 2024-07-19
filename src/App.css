@@ -39,3 +39,47 @@
     background-color: #0056b3;
   }
   
+
+  @layer base {
+    @font-face {
+      font-family:'fredoka';
+      src: url('../src/assets/font/Fredoka-VariableFont_wdth\,wght.ttf') format('fredoka');
+      font-weight: 700;
+      font-style: bold;
+    }
+  }
+
+  @layer base {
+    @font-face {
+      font-family:'Rubik Mono One, monospace';
+      src: url('../src/assets/font/RubikMonoOne-Regular.ttf') format('rubik');
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
+  @layer base {
+    @font-face {
+      font-family:'Righteous, sans-serif';
+      src: url('../src/assets/font/Righteous-Regular.ttf') format('right');
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
