@@ -61,7 +61,7 @@ const Volunteering = () => {
         </div>
       ) : (
         <div className="flex flex-col pt-20 gap-4">
-          {D.VOLUNTEERING.map((volunteering) => (
+          {D.NAVLINKS.map((volunteering) => (
             <div key={volunteering.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               <div className="flex items-center mb-3 text-lg font-semibold">
                 {volunteering.role} at {volunteering.organization}

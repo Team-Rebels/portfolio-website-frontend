@@ -60,7 +60,7 @@ const Experiences = () => {
         </div>
       ) : (
         <div className="flex flex-col pt-20 gap-4">
-          {D.EXPERIENCES.map((experience) => (
+          {D.NAVLINKS.map((experience) => (
             <div key={experience.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               <div className="flex items-center mb-3 text-lg font-semibold">
                 {experience.role} at {experience.companyName}

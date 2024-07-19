@@ -7,8 +7,6 @@ import {
   MessageSquareText,
   GraduationCap,
   HandHeart,
-} from 'lucide-react';
-import {
   Award,
   BookText,
   FolderKanban,
@@ -31,59 +29,6 @@ import Projects from '../pages/dashboard/pages/projects';
 import Skills from '../pages/dashboard/pages/skills';
 import Socials from '../pages/dashboard/pages/socials';
 
-const experienceData = [
-  {
-    companyName: "Google",
-    role: "Junior Web Developer",
-    skills: ["JavaScript", "React", "HTML", "CSS"],
-    responsibilities: ["Developed new features", "Fixed bugs", "Collaborated with design team"],
-    location: "Accra, Greater Accra Region, Ghana",
-    startDate: "2022-11-01",
-    endDate: null,
-  },
-  {
-    companyName: "Microsoft",
-    role: "Frontend Developer Intern",
-    skills: ["JavaScript", "HTML", "CSS"],
-    responsibilities: ["Assisted in developing front-end applications", "Participated in code reviews", "Maintained documentation"],
-    location: "Accra, Greater Accra Region, Ghana",
-    startDate: "2021-08-01",
-    endDate: "2022-11-01",
-  },
-  {
-    companyName: "Airbnb",
-    role: "Customer Service Specialist",
-    skills: ["Customer Service", "Problem-Solving", "Communication"],
-    responsibilities: ["Handled customer inquiries", "Resolved issues", "Provided product information"],
-    location: "United Kingdom - On-site",
-    startDate: "2019-03-01",
-    endDate: "2019-12-01",
-  },
-];
-
-const education = [
-  {
-    id: 1,
-    schoolName: 'University of Accra',
-    program: 'Bachelor of Science in Computer Science',
-    qualification: 'BSc',
-    grade: '1:1',
-    location: 'Accra, Ghana',
-    startDate: '2018-09-01',
-    endDate: '2022-06-30',
-  },
-  {
-    id: 2,
-    schoolName: 'KNUST',
-    program: 'Master of Science in Software Engineering',
-    qualification: 'MSc',
-    grade: '2:1',
-    location: 'Accra, Ghana',
-    startDate: '2022-09-01',
-    endDate: '2024-06-30',
-  },
-];
-
 const D = {
   NAVLINKS: [
     {
@@ -100,13 +45,62 @@ const D = {
       icon: <BriefcaseBusiness />,
       text: 'Experiences',
       link: '/dashboard/experiences',
-      data: experienceData,
+      data: [
+        {
+          companyName: "Google",
+          role: "Junior Web Developer",
+          skills: ["JavaScript", "React", "HTML", "CSS"],
+          responsibilities: ["Developed new features", "Fixed bugs", "Collaborated with design team"],
+          location: "Accra, Greater Accra Region, Ghana",
+          startDate: "2022-11-01",
+          endDate: null,
+        },
+        {
+          companyName: "Microsoft",
+          role: "Frontend Developer Intern",
+          skills: ["JavaScript", "HTML", "CSS"],
+          responsibilities: ["Assisted in developing front-end applications", "Participated in code reviews", "Maintained documentation"],
+          location: "Accra, Greater Accra Region, Ghana",
+          startDate: "2021-08-01",
+          endDate: "2022-11-01",
+        },
+        {
+          companyName: "Airbnb",
+          role: "Customer Service Specialist",
+          skills: ["Customer Service", "Problem-Solving", "Communication"],
+          responsibilities: ["Handled customer inquiries", "Resolved issues", "Provided product information"],
+          location: "United Kingdom - On-site",
+          startDate: "2019-03-01",
+          endDate: "2019-12-01",
+        },
+      ],
     },
     {
       icon: <GraduationCap />,
       text: 'Education',
       link: '/dashboard/education',
-      data: education,
+      data: [
+        {
+          id: 1,
+          schoolName: 'University of Accra',
+          program: 'Bachelor of Science in Computer Science',
+          qualification: 'BSc',
+          grade: '1:1',
+          location: 'Accra, Ghana',
+          startDate: '2018-09-01',
+          endDate: '2022-06-30',
+        },
+        {
+          id: 2,
+          schoolName: 'KNUST',
+          program: 'Master of Science in Software Engineering',
+          qualification: 'MSc',
+          grade: '2:1',
+          location: 'Accra, Ghana',
+          startDate: '2022-09-01',
+          endDate: '2024-06-30',
+        },
+      ],
     },
     {
       icon: <Trophy />,
@@ -209,6 +203,57 @@ const D = {
       total: 4,
     },
   ],
+  EXPERIENCE: [
+    {
+      companyName: "Google",
+      role: "Junior Web Developer",
+      skills: ["JavaScript", "React", "HTML", "CSS"],
+      responsibilities: ["Developed new features", "Fixed bugs", "Collaborated with design team"],
+      location: "Accra, Greater Accra Region, Ghana",
+      startDate: "2022-11-01",
+      endDate: null,
+    },
+    {
+      companyName: "Microsoft",
+      role: "Frontend Developer Intern",
+      skills: ["JavaScript", "HTML", "CSS"],
+      responsibilities: ["Assisted in developing front-end applications", "Participated in code reviews", "Maintained documentation"],
+      location: "Accra, Greater Accra Region, Ghana",
+      startDate: "2021-08-01",
+      endDate: "2022-11-01",
+    },
+    {
+      companyName: "Airbnb",
+      role: "Customer Service Specialist",
+      skills: ["Customer Service", "Problem-Solving", "Communication"],
+      responsibilities: ["Handled customer inquiries", "Resolved issues", "Provided product information"],
+      location: "United Kingdom - On-site",
+      startDate: "2019-03-01",
+      endDate: "2019-12-01",
+    },
+  ],
+  EDUCATION: [
+    {
+      id: 1,
+      schoolName: 'University of Accra',
+      program: 'Bachelor of Science in Computer Science',
+      qualification: 'BSc',
+      grade: '1:1',
+      location: 'Accra, Ghana',
+      startDate: '2018-09-01',
+      endDate: '2022-06-30',
+    },
+    {
+      id: 2,
+      schoolName: 'KNUST',
+      program: 'Master of Science in Software Engineering',
+      qualification: 'MSc',
+      grade: '2:1',
+      location: 'Accra, Ghana',
+      startDate: '2022-09-01',
+      endDate: '2024-06-30',
+    },
+  ],
   SOCIALLINKS: [
     {
       icon: GitHubLogo,
@@ -229,4 +274,3 @@ const D = {
 };
 
 export default D;
-
