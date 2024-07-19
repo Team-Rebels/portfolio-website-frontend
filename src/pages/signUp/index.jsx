@@ -79,7 +79,7 @@ const SignUp = () => {
       toast.success("Signup successful");
       setTimeout(() => {
         navigate("/login");
-      }, 5000);
+      }, 1000);
     } catch (error) {
       console.log("Signup error:", error.response || error.message);
       toast.error("An error occured!");
@@ -89,12 +89,12 @@ const SignUp = () => {
   };
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 h-screen w-full'>
+    <div className='grid grid-cols-1 md:grid-cols-2 w-full'>
       <div className='hidden md:flex items-center justify-center bg-primary'>
-        <img src={signup} alt="Signup" className="w-full h-auto ml-[50px]" />
+        <img src={signup} alt="Signup" className="w-[60vw] h-[120vh] ml-[70px] rounded-xl " />
       </div>
       <div className='flex items-center justify-center'>
-        <form onSubmit={handleSubmit(onSubmit)} className='w-3/4 max-w-md bg-white p-8 rounded-lg shadow-lg'>
+        <form onSubmit={handleSubmit(onSubmit)} className='w-[60vw] bg-white p-8 max-w-md mt-[15px] mb-[10px] rounded-lg shadow-lg'>
           <h2 className='text-2xl font-bold mb-6 text-center'>Sign Up on Captura</h2>
           <div className='mb-4'>
             <label htmlFor="firstName" className='block text-gray-700 font-semibold'>First Name</label>
@@ -172,7 +172,7 @@ const SignUp = () => {
           <div className='flex justify-between items-center mt-4'>
             <p>Already have an account? <Link to="/login" className='text-blue-500'>Login</Link></p>
           </div>
-          <button type="button" className='mt-4 bg-gray-300 text-gray-700 p-2 w-full rounded-md' onClick={() => navigate("/")}>
+          <button type="button" className='mt-4 bg-red-500 text-gray-700 p-2 w-full rounded-md' onClick={() => navigate("/")}>
             Cancel
           </button>
         </form>
