@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +6,8 @@ import { apiAddSkill } from '../../../services/skills';
 import Loader from '../../../components/loader';
 import { toast } from 'react-toastify';
 
-//navigate back to the skills page
-
 const AddSkill = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -29,6 +27,8 @@ const AddSkill = () => {
 
       console.log(res.data);
       toast.success(res.data.message);
+      // Navigate back to the skills page after successful submission
+      navigate('/dashboard/skills');
     } catch (error) {
       console.log(error);
       toast.error("An error occurred.");
@@ -51,6 +51,7 @@ const AddSkill = () => {
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -64,18 +65,20 @@ const AddSkill = () => {
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.proficiency && <p className="text-red-500 text-xs">{errors.proficiency.message}</p>}
         </div>
         <div className="flex justify-end">
           <button
             type="button"
             className="mr-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            onClick={() => console.log('Cancel clicked')}
+            onClick={() => navigate('/dashboard/skills')}
           >
             Cancel
           </button>
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            disabled={isSubmitting}
           >
             {isSubmitting ? <Loader /> : "Add Skill"}
           </button>
@@ -85,4 +88,4 @@ const AddSkill = () => {
   );
 };
 
-export default AddSkill;
+export default AddSkill; 

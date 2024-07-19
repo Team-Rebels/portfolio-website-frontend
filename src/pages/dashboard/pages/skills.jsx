@@ -62,7 +62,7 @@ const Skills = () => {
         </div>
       ) : (
         <div className="grid grid-cols-4 gap-6 pt-20">
-          {skills.map(({ name, levelOfProficiency, image , _id}, index) => (
+          {D.SKILLS.map(({ name, levelOfProficiency, image , _id}, index) => (
             <div key={index} className="rounded-xl h-40 shadow-md flex flex-col bg-white p-5">
               <span>{name}</span>
               <span>{levelOfProficiency}</span>

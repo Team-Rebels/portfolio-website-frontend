@@ -1,38 +1,57 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
+import { apiAddEducation } from '../../../services/education';
+import { toast } from 'react-toastify';
+import Loader from '../../../components/loader';
 
 const AddEducation = () => {
   const navigate = useNavigate();
-  const [schoolName, setSchoolName] = useState('');
-  const [program, setProgram] = useState('');
-  const [qualification, setQualification] = useState('');
-  const [grade, setGrade] = useState('');
-  const [location, setLocation] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    navigate('/dashboard/education');
+  const onSubmit = async (data) => {
+    console.log(data);
+    setIsSubmitting(true);
+
+    try {
+      const res = await apiAddEducation({
+        schoolName: data.schoolName,
+        program: data.program,
+        qualification: data.qualification,
+        grade: data.grade,
+        location: data.location,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        // Handle additional data or files if needed
+      });
+      console.log(res.data);
+      toast.success(res.data.message);
+      // Navigate back to the education page after successful submission
+      navigate('/dashboard/education');
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <PagesLayout headerText="Add New Education" headerTextClassName="text-[#0F1431]" buttonText="" onClick={() => {}}>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             School Name
           </label>
           <input
             type="text"
-            name="schoolName"
-            value={schoolName}
-            onChange={(e) => setSchoolName(e.target.value)}
+            id="schoolName"
+            {...register("schoolName", { required: "School name is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.schoolName && <p className="text-red-500 text-xs">{errors.schoolName.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -40,12 +59,12 @@ const AddEducation = () => {
           </label>
           <input
             type="text"
-            name="program"
-            value={program}
-            onChange={(e) => setProgram(e.target.value)}
+            id="program"
+            {...register("program", { required: "Program is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.program && <p className="text-red-500 text-xs">{errors.program.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -53,12 +72,12 @@ const AddEducation = () => {
           </label>
           <input
             type="text"
-            name="qualification"
-            value={qualification}
-            onChange={(e) => setQualification(e.target.value)}
+            id="qualification"
+            {...register("qualification", { required: "Qualification is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.qualification && <p className="text-red-500 text-xs">{errors.qualification.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -66,12 +85,12 @@ const AddEducation = () => {
           </label>
           <input
             type="text"
-            name="grade"
-            value={grade}
-            onChange={(e) => setGrade(e.target.value)}
+            id="grade"
+            {...register("grade", { required: "Grade is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.grade && <p className="text-red-500 text-xs">{errors.grade.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -79,12 +98,12 @@ const AddEducation = () => {
           </label>
           <input
             type="text"
-            name="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            id="location"
+            {...register("location", { required: "Location is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.location && <p className="text-red-500 text-xs">{errors.location.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -92,12 +111,12 @@ const AddEducation = () => {
           </label>
           <input
             type="date"
-            name="startDate"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            id="startDate"
+            {...register("startDate", { required: "Start date is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.startDate && <p className="text-red-500 text-xs">{errors.startDate.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -105,12 +124,12 @@ const AddEducation = () => {
           </label>
           <input
             type="date"
-            name="endDate"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            id="endDate"
+            {...register("endDate", { required: "End date is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.endDate && <p className="text-red-500 text-xs">{errors.endDate.message}</p>}
         </div>
         <div className="flex justify-end">
           <button
@@ -123,8 +142,9 @@ const AddEducation = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? <Loader /> : "Submit"}
           </button>
         </div>
       </form>

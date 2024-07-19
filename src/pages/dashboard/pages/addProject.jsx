@@ -1,41 +1,53 @@
+
+
 // AddProject.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
+import { apiAddProjects } from '../../../services/projects';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 
 const AddProject = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [projectUrl, setProjectUrl] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [contributors, setContributors] = useState('');
-  const [thumbnailImage, setThumbnailImage] = useState(null);
- 
-  const handleThumbnailChange = (e) => {
-    if (e.target.files[0]) {
-      setThumbnailImage(e.target.files[0]);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    setIsSubmitting(true);
+
+    try {
+      const res = await apiAddProjects({
+        title: data.projecttitle,
+        description: data.description,
+        projectUrl: data.projecturl,
+        startDate: data.startdate,
+        endDate: data.enddate,
+        contributors: data.contributors,
+        // Handle thumbnail image upload separately if needed
+      });
+
+      console.log(res.data);
+      toast.success(res.data.message);
+      navigate('/dashboard/projects');
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/dashboard/projects'); 
-  };
-
   return (
-    <PagesLayout headerText="Add New Project" headerTextClassName="text-[#0F1431]"  buttonText="" onClick={() => {}}>
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <PagesLayout headerText="Add New Project" headerTextClassName="text-[#0F1431]" buttonText="" onClick={() => {}}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700">Project Title</label>
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            {...register('projecttitle', { required: true })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
@@ -43,31 +55,25 @@ const AddProject = () => {
         <div>
           <label className="block text-sm font-medium text-gray-700">Description</label>
           <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            {...register('description', { required: true })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           ></textarea>
         </div>
-        
         <div>
           <label className="block text-sm font-medium text-gray-700">Project URL</label>
           <input
             type="url"
-            value={projectUrl}
-            onChange={(e) => setProjectUrl(e.target.value)}
+            {...register('projecturl')}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
-        
-      
         <div className="flex space-x-4">
           <div className="flex-1">
             <label className="block text-sm font-medium text-gray-700">Start Date</label>
             <input
               type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              {...register('startdate')}
               className="mt-1 p-2 w-full border border-gray-300 rounded"
             />
           </div>
@@ -75,19 +81,16 @@ const AddProject = () => {
             <label className="block text-sm font-medium text-gray-700">End Date</label>
             <input
               type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              {...register('enddate')}
               className="mt-1 p-2 w-full border border-gray-300 rounded"
             />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Contributers</label>
+          <label className="block text-sm font-medium text-gray-700">Contributors</label>
           <input
             type="text"
-             name="contributors"
-            value={contributors}
-            onChange={(e) => setContributors(e.target.value)}
+            {...register('contributors')}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
@@ -96,11 +99,10 @@ const AddProject = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={handleThumbnailChange}
+            {...register('thumbnail')}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
           />
         </div>
-        
         <div className="flex justify-end">
           <button
             type="button"
@@ -112,6 +114,7 @@ const AddProject = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            disabled={isSubmitting}
           >
             Submit
           </button>

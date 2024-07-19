@@ -1,23 +1,88 @@
-import { Layers3, FolderOpen, BriefcaseBusiness, Trophy, BookCopy, MessageSquareText, GraduationCap, HandHeart  } from 'lucide-react';
-import { Award, BookText, FolderKanban, MessageCircleCode,} from "lucide-react";
+import {
+  Layers3,
+  FolderOpen,
+  BriefcaseBusiness,
+  Trophy,
+  BookCopy,
+  MessageSquareText,
+  GraduationCap,
+  HandHeart,
+} from 'lucide-react';
+import {
+  Award,
+  BookText,
+  FolderKanban,
+  MessageCircleCode,
+} from 'lucide-react';
 
-
-import GitHubLogo from "../assets/images/github-logo.png";
-import InstagramLogo from "../assets/images/instagram.png";
-import LinkedInLogo from "../assets/images/linkedin.png";
+import GitHubLogo from '../assets/images/github-logo.png';
+import InstagramLogo from '../assets/images/instagram.png';
+import LinkedInLogo from '../assets/images/linkedin.png';
 import JavascriptLogo from '../assets/images/js.png';
 import HTMLLogo from '../assets/images/html-logo.png';
 import CSSLogo from '../assets/images/CSS-logo.png';
-
 import ReactNativeLogo from '../assets/images/react-logo.png';
 
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
-import Acheivements from "../pages/dashboard/pages/achievements";
-import Experiences from "../pages/dashboard/pages/experiences";
-import Overview from "../pages/dashboard/pages/overview";
-import Projects from "../pages/dashboard/pages/projects";
-import Skills from "../pages/dashboard/pages/skills";
-import Socials from "../pages/dashboard/pages/socials";
+import Achievements from '../pages/dashboard/pages/achievements';
+import Experiences from '../pages/dashboard/pages/experiences';
+import Overview from '../pages/dashboard/pages/overview';
+import Projects from '../pages/dashboard/pages/projects';
+import Skills from '../pages/dashboard/pages/skills';
+import Socials from '../pages/dashboard/pages/socials';
+
+const experienceData = [
+  {
+    companyName: "Google",
+    role: "Junior Web Developer",
+    skills: ["JavaScript", "React", "HTML", "CSS"],
+    responsibilities: ["Developed new features", "Fixed bugs", "Collaborated with design team"],
+    location: "Accra, Greater Accra Region, Ghana",
+    startDate: "2022-11-01",
+    endDate: null,
+  },
+  {
+    companyName: "Microsoft",
+    role: "Frontend Developer Intern",
+    skills: ["JavaScript", "HTML", "CSS"],
+    responsibilities: ["Assisted in developing front-end applications", "Participated in code reviews", "Maintained documentation"],
+    location: "Accra, Greater Accra Region, Ghana",
+    startDate: "2021-08-01",
+    endDate: "2022-11-01",
+  },
+  {
+    companyName: "Airbnb",
+    role: "Customer Service Specialist",
+    skills: ["Customer Service", "Problem-Solving", "Communication"],
+    responsibilities: ["Handled customer inquiries", "Resolved issues", "Provided product information"],
+    location: "United Kingdom - On-site",
+    startDate: "2019-03-01",
+    endDate: "2019-12-01",
+  },
+];
+
+const education = [
+  {
+    id: 1,
+    schoolName: 'University of Accra',
+    program: 'Bachelor of Science in Computer Science',
+    qualification: 'BSc',
+    grade: '1:1',
+    location: 'Accra, Ghana',
+    startDate: '2018-09-01',
+    endDate: '2022-06-30',
+  },
+  {
+    id: 2,
+    schoolName: 'KNUST',
+    program: 'Master of Science in Software Engineering',
+    qualification: 'MSc',
+    grade: '2:1',
+    location: 'Accra, Ghana',
+    startDate: '2022-09-01',
+    endDate: '2024-06-30',
+  },
+];
 
 const D = {
   NAVLINKS: [
@@ -35,11 +100,13 @@ const D = {
       icon: <BriefcaseBusiness />,
       text: 'Experiences',
       link: '/dashboard/experiences',
+      data: experienceData,
     },
     {
       icon: <GraduationCap />,
       text: 'Education',
       link: '/dashboard/education',
+      data: education,
     },
     {
       icon: <Trophy />,
@@ -50,6 +117,32 @@ const D = {
       icon: <HandHeart />,
       text: 'Volunteering',
       link: '/dashboard/volunteering',
+      data: [
+        {
+          id: 1,
+          organization: 'Volunteers’ Aid',
+          description: 'An NGO which links volunteers to organisations.',
+          skills: ['HTML', 'CSS', 'React'],
+          responsibilities: ['Built the website for the organisation'],
+          role: 'Full Stack Developer',
+          location: 'Accra, Ghana',
+          startDate: '2024-01-01',
+          endDate: '2024-07-31',
+          projectName: 'ProjectBuild',
+        },
+        {
+          id: 2,
+          organization: 'Youth Development Program',
+          description: 'Developed and maintained the program’s website.',
+          skills: ['React', 'CSS'],
+          responsibilities: ['Built the website for the organisation'],
+          role: 'Website Developer',
+          location: 'Accra, Ghana',
+          startDate: '2019-03-15',
+          endDate: '2020-12-31',
+          projectName: 'Youth Leadership Initiative Website',
+        },
+      ],
     },
     {
       icon: <BookCopy />,
@@ -63,8 +156,7 @@ const D = {
     },
   ],
   SKILLS: [
-    { 
-  
+    {
       name: 'Javascript',
       levelOfProficiency: 'Beginner',
       images: JavascriptLogo,
@@ -79,7 +171,6 @@ const D = {
       levelOfProficiency: 'Intermediate',
       images: CSSLogo,
     },
-    
     {
       name: 'React Native',
       levelOfProficiency: 'Beginner',
@@ -90,32 +181,31 @@ const D = {
       levelOfProficiency: 'Advanced',
       images: HTMLLogo,
     },
-
   ],
   OVERVIEW: [
     {
       icon: <BookText />,
-      text: "Skills",
+      text: 'Skills',
       total: 40,
     },
     {
       icon: <FolderKanban />,
-      text: "Projects",
+      text: 'Projects',
       total: 100,
     },
     {
       icon: <BriefcaseBusiness />,
-      text: "Experiences",
+      text: 'Experiences',
       total: 9,
     },
     {
       icon: <Award />,
-      text: "Achievements",
+      text: 'Achievements',
       total: 10,
     },
     {
       icon: <MessageCircleCode />,
-      text: "Socials",
+      text: 'Socials',
       total: 4,
     },
   ],
@@ -136,11 +226,7 @@ const D = {
       url: 'https://linkedin.com/in/yourprofile',
     },
   ],
-
-
 };
 
 export default D;
-
-
 
