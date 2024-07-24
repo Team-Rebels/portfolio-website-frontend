@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getToken } from "../../../services/config";
+import { getToken } from "../services/config";
 
 const AuthLayout = () => {
   const token = getToken();
