@@ -23,8 +23,9 @@ import AddEducation from './pages/dashboard/pages/addEducation';
 import Education from './pages/dashboard/pages/education';
 import Volunteering from './pages/dashboard/pages/volunteering';
 import AddVolunteering from './pages/dashboard/pages/addVolunteering';
-import AuthLayout from './pages/dashboard/layouts/authLayout';
+import AuthLayout from './layouts/authLayout';
 import { apiGetUserDetails } from "./services/preview";
+import Profile from './pages/dashboard/pages/profile';
 
 
 

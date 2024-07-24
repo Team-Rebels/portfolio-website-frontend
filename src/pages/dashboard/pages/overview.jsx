@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import CountUp from "react-countup";
 import { Link, useOutletContext } from "react-router-dom";
 
-import D from "../../../constants/navlinks";
+import D from "../../../constants/navlinks"; 
 import { apiGetSkills } from '../../../services/skills';
 import { apiGetAchievements } from '../../../services/achievements';
 import { apiGetProjects } from '../../../services/projects';
@@ -50,7 +50,8 @@ const Overview = () => {
         apiGetProjects(),
         apiGetVolunteering(),
         apiGetEducation(),
-        apiGetExperiences(),
+        apiGetExperience(),
+
       ]);
 
       console.log("Total skills: ", totalSkills.data.Skills.length);
@@ -91,7 +92,7 @@ const Overview = () => {
             View Preview
           </Link>
           <div className="grid grid-cols-3 gap-6">
-            {D.OVERVIEW.map(({ icon, text, total }, index) => (
+            {D.OVERVIEW.map(({ icon, text, id, total }, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-md p-6 flex flex-col"
