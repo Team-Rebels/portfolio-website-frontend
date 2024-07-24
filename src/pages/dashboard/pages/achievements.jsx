@@ -6,6 +6,7 @@ import { TrashIcon } from 'lucide-react';
 import PageLoader from '../../../components/PageLoader';
 import Nodata from '../../../assets/images/nodata.svg';
 import Loader from '../../../components/loader';
+import D from '../../../constants/navlinks';
 
 const Achievements = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const Achievements = () => {
         </div>
       ) : (
         <div className="flex flex-col pt-20 gap-4">
-          {D.NAVLINKS.map((achievement) => (
+          {D.ACHEIVEMENT.map((achievement) => (
             <div key={achievement.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               <div className="flex items-center mb-3 text-lg font-semibold">
                 {achievement.title}

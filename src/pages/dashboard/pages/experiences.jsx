@@ -60,7 +60,7 @@ const Experiences = () => {
         </div>
       ) : (
         <div className="flex flex-col pt-20 gap-4">
-          {D.NAVLINKS.map((experience) => (
+          {D.EXPERIENCE.map((experience) => (
             <div key={experience.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               <div className="flex items-center mb-3 text-lg font-semibold">
                 {experience.role} at {experience.companyName}
@@ -70,10 +70,10 @@ const Experiences = () => {
                 {experience.startDate} - {experience.endDate ? experience.endDate : 'Present'}
               </div>
               <div className="text-gray-600">
-                <span className="font-semibold">Skills: </span>{experience.skills.join(', ')}
+                <span className="font-semibold">Skills: </span>{experience.skills(', ')}
               </div>
               <div className="text-gray-600">
-                <span className="font-semibold">Responsibilities: </span>{experience.responsibilities.join(', ')}
+                <span className="font-semibold">Responsibilities: </span>{experience.responsibilities(', ')}
               </div>
               <div className="flex mt-auto">
                 <button 

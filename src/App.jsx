@@ -23,6 +23,9 @@ import AddEducation from './pages/dashboard/pages/addEducation';
 import Education from './pages/dashboard/pages/education';
 import Volunteering from './pages/dashboard/pages/volunteering';
 import AddVolunteering from './pages/dashboard/pages/addVolunteering';
+import AuthLayout from './pages/dashboard/layouts/authLayout';
+import { apiGetUserDetails } from "./services/preview";
+
 
 
 
@@ -73,6 +76,21 @@ function App() {
       path: '/',
       element: <Home />,
     },
+    {
+      element: <AuthLayout />,
+      children: [
+        {
+          path: "login",
+          element: <LogIn />,
+        },
+        {
+          path: "signup",
+          element: <SignUp />,
+        },
+      ],
+    },
+
+
     {
       path: 'preview',
       element: <Preview />,
@@ -141,18 +159,29 @@ function App() {
           path: 'volunteering/addvolunteering',
           element: <AddVolunteering />,
         },
-
-
+        {
+          path: "profile",
+          element: <Profile />,
+        },
       ],
     },
     {
-      path: 'login',
-      element: <LogIn />,
+      path: "preview/:username",
+      element: <Preview />,
+      loader: async ({ params }) => {
+        const username = params.username;
+        try {
+          const response = await apiGetUserDetails(username);
+          const userProfileData = response?.data.user;
+          return userProfileData;
+        } catch (error) {
+          toast.error("An error occured");
+          return null;
+        }
+      },
     },
-    {
-      path: 'signup',
-      element: <SignUp />,
-    },
+
+   
   ]);
 
   return <RouterProvider router={router} />;
