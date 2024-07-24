@@ -23,9 +23,9 @@ const Preview = () => {
           </div>
           <div className="mb-4 flex flex-row justify-between">
             <div>
-              <p>Location</p>
-              <p>Phone</p>
-              <p>Email</p>
+              <p>Location:</p>
+              <p>Phone:</p>
+              <p>Email:</p>
             </div>
             <div>
               <p>Accra,Ghana</p>
@@ -36,15 +36,15 @@ const Preview = () => {
           <div className="mb-4 flex flex-col justify-center">
             <p>On the Web</p>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Linkedin /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="https://www.linkedin.com/in/charles-adu-sarkodie/"><Linkedin /></a>
               <p className='text-[20px]'>LinkedIn</p>
             </div>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Github /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="https://github.com/CharlesAduSark"><Github /></a>
               <p className='text-[20px]'>Github</p>
             </div>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Twitter /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="https://x.com/?lang=en"><Twitter /></a>
               <p className='text-[20px]'>Twitter</p>
             </div>
             {/* <div>
@@ -55,6 +55,14 @@ const Preview = () => {
           <div className="mb-4 flex flex-col justify-center">
             <h2 className="text-lg font-semibold">About me</h2>
             <p>This is a 2 line about you as a Website Developer</p>
+          </div>
+          <div className='mb-[10px] text-[20px]'>
+            <button className="button border rounded text-[16px] p-[2px] bg-[#22C55E] pl-[5px] pr-[5px]">
+              <a className="button" href="../assets/Resume/ResumeOfficial.pdf" download="ResumeOfficial.pdf">
+                Download Resume
+              </a>
+            </button>
+            {/* <a href="https://drive.google.com/file/d/1tiHxB0vtUHETfzZu3F5l0ANh-7srnZyt/view?usp=sharing">Download Resume</a> */}
           </div>
           <div className="mb-4 flex flex-col justify-center">
             <h2 className="text-lg font-semibold">Tools & Languages</h2>
@@ -74,7 +82,7 @@ const Preview = () => {
             <div class="dropdown relative inline-block">
               <div>
                 <select className="w-[170px] p-2 rounded-lg text-black">
-                  <option value="Category" disabled selected hidden>Why Hire Me</option>
+                  <option value="Category" disabled selected hidden>Project</option>
                   <option value="category1">Education</option>
                   <option value="category2">Achievements</option>
                   <option value="category3">Skills</option>
