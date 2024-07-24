@@ -1,26 +1,48 @@
-// src/pages/dashboard/pages/AddVolunteering.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
+import { apiAddVolunteering } from '../../../services/volunteering';
+
+import { useForm } from 'react-hook-form';
+import Loader from '../../../components/loader';
+import { toast } from 'react-toastify';
 
 const AddVolunteering = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [organization, setOrganization] = useState('');
-  const [description, setDescription] = useState('');
-  const [skills, setSkills] = useState('');
-  const [responsibilities, setResponsibilities] = useState('');
-  const [role, setRole] = useState('');
-  const [location, setLocation] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [projectName, setProjectName] = useState('');
+  const onSubmit = async (data) => {
+    console.log(data);
+    setIsSubmitting(true);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Example: Handle form submission logic (e.g., API call to save data)
-    // Navigate back to volunteering page after submission
-    navigate('/dashboard/volunteering');
+      try {
+        const res = await apiAddVolunteering({
+          organization: data.organization,
+          description: data.description,
+          skills: data.skills,
+          responsibilities: data.responsibilities,
+          role: data.role,
+          location: data.location,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          projectName: data.projectName,
+          // Handle additional data or files if needed
+        });
+      console.log(res.data);
+      toast.success(res.data.message);
+      // Navigate back to the volunteering page after successful submission
+      navigate('/dashboard/volunteering');
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -30,19 +52,19 @@ const AddVolunteering = () => {
       buttonText=""
       onClick={() => {}}
     >
-      <form onSubmit={handleSubmit} className="space-y-6 h-1/2">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 h-1/2">
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Organization
           </label>
           <input
             type="text"
-            name="organization"
-            value={organization}
-            onChange={(e) => setOrganization(e.target.value)}
+            id="organization"
+            {...register("organization", { required: "Organization is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.organization && <p className="text-red-500 text-xs">{errors.organization.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -50,12 +72,13 @@ const AddVolunteering = () => {
           </label>
           <textarea
             name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            id="description"
+            {...register("description", { required: "Description is required" })}
             rows="3"
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           ></textarea>
+          {errors.description && <p className="text-red-500 text-xs">{errors.description.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -63,25 +86,25 @@ const AddVolunteering = () => {
           </label>
           <input
             type="text"
-            name="skills"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
+            id="skills"
+            {...register("skills", { required: "Skills are required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.skills && <p className="text-red-500 text-xs">{errors.skills.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Responsibilities
           </label>
           <textarea
-            name="responsibilities"
-            value={responsibilities}
-            onChange={(e) => setResponsibilities(e.target.value)}
+            id="responsibilities"
+            {...register("responsibilities", { required: "Responsibilities are required" })}
             rows="3"
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           ></textarea>
+          {errors.responsibilities && <p className="text-red-500 text-xs">{errors.responsibilities.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -89,12 +112,12 @@ const AddVolunteering = () => {
           </label>
           <input
             type="text"
-            name="role"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
+            id="role"
+            {...register("role", { required: "Role is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.role && <p className="text-red-500 text-xs">{errors.role.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -102,12 +125,12 @@ const AddVolunteering = () => {
           </label>
           <input
             type="text"
-            name="location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
+            id="location"
+            {...register("location", { required: "Location is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.location && <p className="text-red-500 text-xs">{errors.location.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -115,12 +138,12 @@ const AddVolunteering = () => {
           </label>
           <input
             type="date"
-            name="startDate"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            id="startDate"
+            {...register("startDate", { required: "Start date is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.startDate && <p className="text-red-500 text-xs">{errors.startDate.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -128,12 +151,12 @@ const AddVolunteering = () => {
           </label>
           <input
             type="date"
-            name="endDate"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            id="endDate"
+            {...register("endDate", { required: "End date is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.endDate && <p className="text-red-500 text-xs">{errors.endDate.message}</p>}
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
@@ -141,12 +164,12 @@ const AddVolunteering = () => {
           </label>
           <input
             type="text"
-            name="projectName"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
+            id="projectName"
+            {...register("projectName", { required: "Project name is required" })}
             className="mt-1 p-2 w-full border border-gray-300 rounded"
             required
           />
+          {errors.projectName && <p className="text-red-500 text-xs">{errors.projectName.message}</p>}
         </div>
         <div className="flex justify-end">
           <button
@@ -159,8 +182,9 @@ const AddVolunteering = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            disabled={isSubmitting}
           >
-            Submit
+            {isSubmitting ? <Loader /> : "Submit"}
           </button>
         </div>
       </form>
@@ -169,3 +193,4 @@ const AddVolunteering = () => {
 };
 
 export default AddVolunteering;
+

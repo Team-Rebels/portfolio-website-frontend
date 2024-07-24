@@ -6,18 +6,18 @@ return apiClient.get("/education");
 };
 
 export const apiAddEducation = async (payload) => {
-    return apiClient.post("/skills", payload);
+    return apiClient.post("/education", payload);
 };
 
 
 export const apiGetEducationById = async (id) => {
-    return apiClient.get(`/skills/${id}`)
+    return apiClient.get(`/education/${id}`)
 };
 
-export const apiUpdateEducation = async (id) => {
-    return apiClient.patch(`/skills/${id}`);
-};
+export const apiUpdateEducation = async (id, payload) => {
+    return apiClient.patch(`/education/${id}`, payload);
+  };
 
 export const apiDeleteEducation = async (id) => {
-    return apiClient.delete(`/skills/${id}`);
+    return apiClient.delete(`/education/${id}`);
 };

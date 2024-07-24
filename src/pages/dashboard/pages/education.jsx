@@ -1,75 +1,93 @@
-// src/pages/dashboard/pages/Education.jsx
-import React, { useState } from 'react';
+
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
+import { apiGetEducation, apiDeleteEducation } from '../../../services/education'; // Update path if necessary
+import { TrashIcon, Edit } from 'lucide-react';
+import PageLoader from '../../../components/PageLoader';
+import Nodata from '../../../assets/images/nodata.svg';
+import Loader from '../../../components/loader';
+import D from '../../../constants/navlinks';
 
 const Education = () => {
   const navigate = useNavigate();
-  
-  // Example data fetched or managed from AddEducation page
-  const [educationItems, setEducationItems] = useState([
-    {
-      id: 1,
-      schoolName: 'University of Accra',
-      program: 'Bachelor of Science in Computer Science',
-      qualification: 'BSc',
-      grade: '1:1',
-      location: 'Accra, Ghana',
-      startDate: '2018-09-01',
-      endDate: '2022-06-30',
-    },
-    {
-      id: 2,
-      schoolName: 'KNUST',
-      program: 'Master of Science in Software Engineering',
-      qualification: 'MSc',
-      grade: '2:1',
-      location: 'Accra, Ghana',
-      startDate: '2022-09-01',
-      endDate: '2024-06-30',
-    },
-  ]);
+  const [education, setEducation] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // Function to delete an education item
-  const handleDelete = (id) => {
-    // Example: You might implement logic to delete from database or update state
-    const updatedEducationItems = educationItems.filter(item => item.id !== id);
-    setEducationItems(updatedEducationItems);
+  // Fetch all education records from API
+  const fetchEducation = async () => {
+    setIsLoading(true);
+    try {
+      const res = await apiGetEducation();
+      setEducation(res.data); // Adjust based on your API response structure
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // Handle delete of an education record
+  const handleDelete = async (id) => {
+    setIsDeleting(true);
+    try {
+      await apiDeleteEducation(id);
+      setEducation(education.filter(item => item.id !== id));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEducation();
+  }, []);
 
   return (
     <PagesLayout
       headerText="Education"
       headerTextClassName="text-[#0F1431]"
       buttonText="Add New Education"
-      onClick={() => navigate('/dashboard/education/addeducation')}
+      onClick={() => navigate('/dashboard/education/addEducation')}
     >
-      <div className="flex flex-cols-1 pt-20 gap-4">
-        {educationItems.map((education, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
-            <div className="flex items-center mb-3 text-lg font-semibold">
-              {education.program} at {education.schoolName}
+      {isLoading ? (
+        <PageLoader />
+      ) : education.length === 0 ? (
+        <div className="flex flex-col items-center">
+          <img src={Nodata} alt="No data" className="w-48 h-48" />
+          <p>No education records added yet</p>
+        </div>
+      ) : (
+        <div className="flex flex-col pt-20 gap-4">
+          {D.EDUCATION.map((education) => (
+            <div key={education.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
+              <div className="flex items-center mb-3 text-lg font-semibold">
+                {education.program} at {education.schoolName}
+              </div>
+              <div className="text-gray-600">{education.qualification}, {education.grade}</div>
+              <div className="text-gray-600">{education.location}</div>
+              <div className="text-gray-600">{education.startDate} - {education.endDate}</div>
+              <div className="flex mt-3">
+                <button
+                  className="mr-2 p-2 hover:bg-green-400 rounded"
+                  onClick={() => navigate(`/dashboard/education/edit/${education.id}`)}
+                >
+                  <Edit className="w-5 h-5 text-green-600" />
+                </button>
+                <button
+                  className="p-2 hover:bg-red-400 rounded"
+                  onClick={() => handleDelete(education.id)}
+                >
+                  {isDeleting ? <Loader /> : <TrashIcon className="w-5 h-5 text-red-600" />}
+                </button>
+              </div>
             </div>
-            <div className="text-gray-600">{education.qualification}, {education.grade}</div>
-            <div className="text-gray-600">{education.location}</div>
-            <div className="text-gray-600">{education.startDate} - {education.endDate}</div>
-            <div className="flex mt-auto">
-              <button
-                className="mr-2 p-2 hover:bg-green-400 rounded"
-                onClick={() => navigate(`/dashboard/education/edit/${education.id}`)}
-              >
-                Edit
-              </button>
-              <button
-                className="p-2 hover:bg-red-400 rounded"
-                onClick={() => handleDelete(education.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </PagesLayout>
   );
 };
