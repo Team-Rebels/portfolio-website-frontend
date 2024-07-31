@@ -3,30 +3,24 @@ import Sidebar from '../../../components/sidebar'
 import { Link, Navigate, Outlet } from "react-router-dom";
 //import { apiGetProfile } from "../../../services/profile";
 import { useEffect, useState } from "react";
-import { getToken } from "../../../services/config";
-import { toast } from "react-toastify";
+import { getDetails } from "../../../services/config";
+
 import { SquareMenu } from "lucide-react";
 
 
 
 const DashLayout = () => {
-  const [profile, setProfile] = useState();
+  const [user, setUser] = useState();
 
-  const token = getToken();
-
-  const getUserProfile = async () => {
-    try {
-      const response = await apiGetProfile();
-      const userProfileData = response?.data.profile;
-      setProfile(userProfileData);
-    } catch (error) {
-      toast.error("An error occured");
-    }
-  };
+  const { token, firstName, lastName, userName } = getDetails();
 
   useEffect(() => {
     if (token) {
-      getUserProfile();
+      setUser({
+        firstName,
+        lastName,
+        userName,
+      });
     }
   }, []);
 
@@ -35,12 +29,10 @@ const DashLayout = () => {
   }
 
   const getAvatar = () => {
-    if (!profile) return "N/A";
-    const initials = `${profile.firstName[0]}${profile.lastName[0]}`;
+    if (!user) return "N/A";
+    const initials = `${firstName[0]}${lastName[0]}`;
     return initials.toUpperCase();
   };
-
-
 
   return (
     <div className="flex h-screen flex-grow bg-cover bg-[#F8FAFC] bg-center opacity-100 " >
@@ -60,7 +52,7 @@ const DashLayout = () => {
           </Link>
         </div>
       <div className="flex-grow p-4 ">
-        <Outlet context={[profile, setProfile]}/>
+        <Outlet context={[user, setUser]}/>
       </div>
     </div>
     </div>

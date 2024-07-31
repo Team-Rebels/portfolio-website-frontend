@@ -28,6 +28,11 @@ import Overview from '../pages/dashboard/pages/overview';
 import Projects from '../pages/dashboard/pages/projects';
 import Skills from '../pages/dashboard/pages/skills';
 import Socials from '../pages/dashboard/pages/socials';
+import  Website  from '../assets/images/website.jpg';
+import  Website4  from '../assets/images/website4.jpg';
+import  Website5  from '../assets/images/website5.jpg';
+
+
 
 const D = {
   NAVLINKS: [
@@ -175,6 +180,44 @@ const D = {
       location: 'Accra, Ghana',
       startDate: '2022-09-01',
       endDate: '2024-06-30',
+    },
+  ],
+  Projects: [
+    {
+      title: 'Restaurant App',
+      description: 'A description of project one.',
+      technologies: 'React, Node.js, MongoDB',
+      projectUrl: 'https://project-one.com',
+      githubUrl: 'https://github.com/project-one',
+      startDate: '2023-01-01',
+      endDate: '2023-03-01',
+      role: 'Frontend Developer',
+      thumbnailImage: Website,
+      screenshots: [],
+    },
+    {
+      title: 'Event App',
+      description: 'A description of project two.',
+      technologies: 'React, Tailwind CSS, Vite',
+      projectUrl: 'https://project-two.com',
+      githubUrl: 'https://github.com/project-two',
+      startDate: '2023-02-01',
+      endDate: '2023-04-01',
+      role: 'Backend Developer',
+      thumbnailImage: Website4,
+      screenshots: [],
+    },
+    {
+      title: 'Furnish App',
+      description: 'A description of project three.',
+      technologies: 'React, Tailwind CSS, Vite',
+      projectUrl: 'https://project-three.com',
+      githubUrl: 'https://github.com/project-three',
+      startDate: '2023-03-01',
+      endDate: '2023-05-01',
+      role: 'Full Stack Developer',
+      thumbnailImage: Website5,
+      screenshots: [],
     },
   ],
   VOLUNTEERING: [

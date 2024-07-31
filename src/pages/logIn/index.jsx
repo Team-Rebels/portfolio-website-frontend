@@ -14,9 +14,15 @@ const LogIn = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur", mode: "all" });
+
+  const addToLocalStorage = (accessToken, user) => {
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("firstName", user.firstName);
+    localStorage.setItem("lastName", user.lastName);
+    localStorage.setItem("userName", user.userName);
+  };
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -27,10 +33,11 @@ const LogIn = () => {
         password: data.password
       });
       console.log("Response", res.data);
-      localStorage.setItem("accessToken", res.data.accessToken)
-      toast.success(res.data);
-      setTimeout(() => { navigate("/dashboard") }, 1000);
 
+      addToLocalStorage(res.data.accessToken, res.data.user);
+
+      toast.success(res.data.message);
+      setTimeout(() => { navigate("/dashboard") }, 1000);
     } catch (error) {
       console.log(error);
       toast.error("An error occurred!");

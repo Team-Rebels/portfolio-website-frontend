@@ -1,8 +1,7 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom'; // Import NavLink and Link
+import { NavLink, Link, useNavigate } from 'react-router-dom'; // Import NavLink and Link
 import D from '../constants/navlinks';
 import { LogOut } from 'lucide-react';
-import { useNavigate } from "react-router-dom";
 import { apiLogout } from "../services/auth";
 import { toast } from "react-toastify";
 
