@@ -26,7 +26,7 @@ import AddVolunteering from './pages/dashboard/pages/addVolunteering';
 import AuthLayout from './layouts/authLayout';
 import { apiGetUserDetails } from "./services/preview";
 import Profile from './pages/dashboard/pages/profile';
-
+import { toast } from 'react-toastify';
 
 
 
@@ -34,42 +34,7 @@ function App() {
   const [experiences, setExperiences] = useState([]);
   const [achievements, setAchievements] = useState([]);
   const [projects, setProjects] = useState([
-    {
-      title: 'Restaurant App',
-      description: 'A description of project one.',
-      technologies: 'React, Node.js, MongoDB',
-      projectUrl: 'https://project-one.com',
-      githubUrl: 'https://github.com/project-one',
-      startDate: '2023-01-01',
-      endDate: '2023-03-01',
-      role: 'Frontend Developer',
-      thumbnailImage: Website1,
-      screenshots: [],
-    },
-    {
-      title: 'Event App',
-      description: 'A description of project two.',
-      technologies: 'React, Tailwind CSS, Vite',
-      projectUrl: 'https://project-two.com',
-      githubUrl: 'https://github.com/project-two',
-      startDate: '2023-02-01',
-      endDate: '2023-04-01',
-      role: 'Backend Developer',
-      thumbnailImage: Website4,
-      screenshots: [],
-    },
-    {
-      title: 'Furnish App',
-      description: 'A description of project three.',
-      technologies: 'React, Tailwind CSS, Vite',
-      projectUrl: 'https://project-three.com',
-      githubUrl: 'https://github.com/project-three',
-      startDate: '2023-03-01',
-      endDate: '2023-05-01',
-      role: 'Full Stack Developer',
-      thumbnailImage: Website5,
-      screenshots: [],
-    },
+    
   ]);
 
   const router = createBrowserRouter([
@@ -77,9 +42,9 @@ function App() {
       path: '/',
       element: <Home />,
     },
-    {
-      element: <AuthLayout />,
-      children: [
+    // {
+    //   element: <AuthLayout />,
+    //   children: [
         {
           path: "login",
           element: <LogIn />,
@@ -88,14 +53,8 @@ function App() {
           path: "signup",
           element: <SignUp />,
         },
-      ],
-    },
-
-
-    {
-      path: 'preview',
-      element: <Preview />,
-    },
+    //   ],
+    // },
     {
       path: 'dashboard',
       element: <DashLayout />,
@@ -169,19 +128,19 @@ function App() {
     {
       path: "preview/:username",
       element: <Preview />,
-      loader: async ({ params }) => {
-        const username = params.username;
+      loader: async({params}) => {
+        const username = params.username
         try {
-          const response = await apiGetUserDetails(username);
+          const response = await apiGetUserDetails(username)
           const userProfileData = response?.data.user;
           return userProfileData;
         } catch (error) {
-          toast.error("An error occured");
+          console.log(error)
+          toast.error("An error occured")
           return null;
         }
-      },
-    },
-
+      }
+    }
    
   ]);
 
