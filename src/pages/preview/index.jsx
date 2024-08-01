@@ -1,10 +1,14 @@
 import React from 'react'
 import { banner2, profile, website, website4, website5 } from '../../assets'
 import { Github, Linkedin, Twitter } from 'lucide-react';
+import { useLoaderData } from "react-router-dom";
 
 
 const Preview = () => {
+  const data = useLoaderData();
+  console.log("🚀 ~ Preview ~ data:", data[0]);
   return (
+    
     <div className='w-full bg-[#212A31] text-[white] '>
       <div>
         <img className='h-[50vh] w-full bg-cover' src={banner2} alt="" />
@@ -13,9 +17,9 @@ const Preview = () => {
         <div className="bg-[#124E66] border p-4 w-1/4 ml-[-200px] text-[white] rounded-lg -translate-y-[26vh]">
           <img className="w-30 h-[150px] rounded-full mb-4 ml-[70px]" src={profile} alt="Profile" />
           <div className="mb-4 flex flex-col text-center">
-            <h1 className="text-xl font-bold">Charles Adu-Sarkodie</h1>
-            <p>Web Designer</p>
-            <p>Accra, Ghana</p>
+            <h1 className="text-xl font-bold">{data[0].firstName} {data[0].lastName}</h1>
+            {/* <p>{data[0].userProfile.bio}</p> */}
+            <p>{data[0].userProfile.location}</p>
             <div className="flex mt-2 flex-col gap-2">
               <button className="bg-blue-500 text-white py-1 px-3 rounded-[40px]">Follow</button>
               <button className="bg-green-500 text-white py-1 px-3 rounded-[40px] ">Message</button>
@@ -29,22 +33,22 @@ const Preview = () => {
             </div>
             <div>
               <p>Accra,Ghana</p>
-              <p>+233249134165</p>
-              <p>eduprince16@gmail.com</p>
+              <p>{data[0].userProfile.contact}</p>
+              <p>{data[0].email}</p>
             </div>
           </div>
           <div className="mb-4 flex flex-col justify-center">
             <p>On the Web</p>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Linkedin /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href={data[0].userProfile.linkedinLink}><Linkedin /></a>
               <p className='text-[20px]'>LinkedIn</p>
             </div>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Github /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href={data[0].userProfile.githubLink}><Github /></a>
               <p className='text-[20px]'>Github</p>
             </div>
             <div className='flex flex-row gap-3  rounded-md w-1/2 place-items-center '>
-              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href="#"><Twitter /></a>
+              <a className="text-blue-600 h-auto mt-[2px] ml-[5px]" href={data[0].userProfile.twitterLink}><Twitter /></a>
               <p className='text-[20px]'>Twitter</p>
             </div>
             {/* <div>
@@ -54,7 +58,7 @@ const Preview = () => {
           </div>
           <div className="mb-4 flex flex-col justify-center">
             <h2 className="text-lg font-semibold">About me</h2>
-            <p>This is a 2 line about you as a Website Developer</p>
+            <p>{data[0].userProfile.bio}</p>
           </div>
           <div className="mb-4 flex flex-col justify-center">
             <h2 className="text-lg font-semibold">Tools & Languages</h2>

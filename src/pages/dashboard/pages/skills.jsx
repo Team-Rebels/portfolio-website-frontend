@@ -14,7 +14,7 @@ const Skills = () => {
   const navigate = useNavigate();
   const [skills, setSkills] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [deletingItems, setDeletingItems] = useState(false);
 
   const fetchSkills = async () => {
     setIsLoading(true);
@@ -29,6 +29,8 @@ const Skills = () => {
     }
   };
  const handleDelete = async (_id) => {
+  setDeletingItems((prev) => ({ ...prev, [_id]: true }));
+
   try {
     const res = await apiDeleteSkill(_id)
     console.log(res.data)
@@ -38,6 +40,8 @@ const Skills = () => {
     console.log(error);
     toast.error("An error occured");
     
+  } finally {
+    setDeletingItems((prev) => ({ ...prev, [_id]: false }));
   }
 
  };
@@ -62,7 +66,7 @@ const Skills = () => {
         </div>
       ) : (
         <div className="grid grid-cols-4 gap-6 pt-20">
-          {D.SKILLS.map(({ name, levelOfProficiency, image , _id}, index) => (
+          {skills.map(({ name, levelOfProficiency, image , _id}, index) => (
             <div key={index} className="rounded-xl h-40 shadow-md flex flex-col bg-white p-5">
               <span>{name}</span>
               <span>{levelOfProficiency}</span>
@@ -73,9 +77,9 @@ const Skills = () => {
                 </button>
                
                 <button onClick={() => handleDelete(_id)} className="p-2 hover:bg-red-400 rounded">
-                 {
-                  isDeleting ? <Loader/> : <TrashIcon/>
-                 }
+                 
+                  {deletingItems[_id] ? <Loader/> : <TrashIcon/>}
+                 
                 </button>
               </div>
             </div>
