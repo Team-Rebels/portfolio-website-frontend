@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import PagesLayout from '../layouts/pagesLayout';
 import { apiAddEducation } from '../../../services/education';
 import { toast } from 'react-toastify';

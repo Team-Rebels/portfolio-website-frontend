@@ -50,7 +50,7 @@ const Achievement = () => {
       headerText="Achievements"
       headerTextClassName="text-[#0F1431]"
       buttonText="Add New Achievement"
-      onClick={() => navigate('/dashboard/achievements/addAchievement')}
+      onClick={() => navigate('/dashboard/achievement/addAchievement')}
     >
       {isLoading ? (
         <PageLoader />
@@ -73,7 +73,7 @@ const Achievement = () => {
               <div className="flex mt-3">
               <button 
               className="mr-2 p-2 hover:bg-green-400 rounded"
-              onClick={() => navigate(`/dashboard/achievements/edit/${achievement.id}`)}
+              onClick={() => navigate(`/dashboard/achievement/edit/${achievement.id}`)}
             >
               <Edit className="w-5 h-5 text-green-600" />
             </button>

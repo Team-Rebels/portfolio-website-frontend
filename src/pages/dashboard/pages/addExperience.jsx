@@ -32,7 +32,7 @@ const AddExperience = () => {
       console.log(res.data);
       toast.success(res.data.message);
       // Navigate back to the experiences page after successful submission
-      navigate('/dashboard/experiences');
+      navigate('/dashboard/experience');
     } catch (error) {
       console.log(error);
       toast.error("An error occurred.");
@@ -138,7 +138,7 @@ const AddExperience = () => {
           <button
             type="button"
             className="mr-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            onClick={() => navigate('/dashboard/experiences')}
+            onClick={() => navigate('/dashboard/experience')}
           >
             Cancel
           </button>
