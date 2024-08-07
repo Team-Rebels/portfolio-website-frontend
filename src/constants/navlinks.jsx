@@ -22,10 +22,10 @@ import CSSLogo from '../assets/images/CSS-logo.png';
 import ReactNativeLogo from '../assets/images/react-logo.png';
 
 import PagesLayout from '../pages/dashboard/layouts/pagesLayout';
-import Achievements from '../pages/dashboard/pages/achievements';
-import Experiences from '../pages/dashboard/pages/experiences';
+import Achievement from '../pages/dashboard/pages/achievement';
+import Experience from '../pages/dashboard/pages/experience';
 import Overview from '../pages/dashboard/pages/overview';
-import Projects from '../pages/dashboard/pages/projects';
+import Project from '../pages/dashboard/pages/project';
 import Skills from '../pages/dashboard/pages/skills';
 import Socials from '../pages/dashboard/pages/socials';
 import  Website  from '../assets/images/website.jpg';
@@ -43,13 +43,13 @@ const D = {
     },
     {
       icon: <FolderOpen />,
-      text: 'Projects',
-      link: '/dashboard/projects',
+      text: 'Project',
+      link: '/dashboard/project',
     },
     {
       icon: <BriefcaseBusiness />,
-      text: 'Experiences',
-      link: '/dashboard/experiences',
+      text: 'Experience',
+      link: '/dashboard/experience',
     },
     {
       icon: <GraduationCap />,
@@ -58,8 +58,8 @@ const D = {
     },
     {
       icon: <Trophy />,
-      text: 'Achievements',
-      link: '/dashboard/achievements',
+      text: 'Achievement',
+      link: '/dashboard/achievement',
     },
     {
       icon: <HandHeart />,
@@ -117,12 +117,12 @@ const D = {
     },
     {
       icon: <BriefcaseBusiness />,
-      text: 'Experiences',
+      text: 'Experience',
       total: 9,
     },
     {
       icon: <Award />,
-      text: 'Achievements',
+      text: 'Achievement',
       total: 10,
     },
     {
@@ -131,6 +131,23 @@ const D = {
       total: 4,
     },
   ],
+  Achievement: [
+  {
+    description: 'Completed a Full Stack Development Bootcamp',
+    date: '2023-05-15',
+    award: 'Certificate of Completion',
+    institution: 'Code Academy',
+  },
+  {
+    description: 'Won 1st place in the Hackathon',
+    date: '2022-11-10',
+    award: 'Hackathon Winner',
+    institution: 'Tech Fest',
+  },
+  
+],
+
+
   EXPERIENCE: [
     {
       companyName: "Google",

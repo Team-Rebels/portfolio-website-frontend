@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
-import { apiAddProjects } from '../../../services/projects';
+import { apiAddProject } from '../../../services/project';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
@@ -19,7 +19,7 @@ const AddProject = () => {
     setIsSubmitting(true);
 
     try {
-      const res = await apiAddProjects({
+      const res = await apiAddProject({
         title: data.projecttitle,
         description: data.description,
         projectUrl: data.projecturl,
@@ -31,7 +31,7 @@ const AddProject = () => {
 
       console.log(res.data);
       toast.success(res.data.message);
-      navigate('/dashboard/projects');
+      navigate('/dashboard/project');
     } catch (error) {
       console.log(error);
       toast.error("An error occurred.");
@@ -107,7 +107,7 @@ const AddProject = () => {
           <button
             type="button"
             className="mr-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            onClick={() => navigate('/dashboard/projects')}
+            onClick={() => navigate('/dashboard/project')}
           >
             Cancel
           </button>

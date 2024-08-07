@@ -19,7 +19,8 @@ const Volunteering = () => {
     setIsLoading(true);
     try {
       const res = await apiGetVolunteering();
-      setVolunteering(res.data); // Adjust based on your API response structure
+      console.log(res.data);
+      setVolunteering(res.data.user); // Adjust based on your API response structure
     } catch (error) {
       console.log(error);
     } finally {
@@ -61,7 +62,7 @@ const Volunteering = () => {
         </div>
       ) : (
         <div className="flex flex-col pt-20 gap-4">
-          {D.VOLUNTEERING.map((volunteering) => (
+          {volunteering.map((volunteering) => (
             <div key={volunteering.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               <div className="flex items-center mb-3 text-lg font-semibold">
                 {volunteering.role} at {volunteering.organization}

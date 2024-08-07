@@ -50,15 +50,20 @@ apiClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    // If there's an error in the response (like a 401), handle it here
-    if (error.response.status === 401) {
-      // remove accessToken from local storage
-      clearDetails();
-      // Handle 401 error (e.g., logout user and redirect to login page)
-      window.location.replace("/login");
-    }
-    if (error.response.status === 404) {
-      toast.error("Not found");
+    // Ensure error.response exists before accessing its properties
+    if (error.response) {
+      if (error.response.status === 401) {
+        // Remove accessToken from local storage
+        clearDetails();
+        // Handle 401 error (e.g., logout user and redirect to login page)
+        window.location.replace('/login');
+      }
+      if (error.response.status === 404) {
+        toast.error('Not found');
+      }
+    } else {
+      // Handle network errors or other errors that don't have a response
+      console.error('Network error or no response:', error);
     }
     // Return the error so the promise is rejected
     return Promise.reject(error);

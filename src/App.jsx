@@ -7,15 +7,15 @@ import Preview from './pages/preview';
 import DashLayout from './pages/dashboard/layouts/dashLayout';
 import Overview from './pages/dashboard/pages/overview';
 import Skills from './pages/dashboard/pages/skills';
-import Projects from './pages/dashboard/pages/projects';
+import Project from './pages/dashboard/pages/project';
 import Socials from './pages/dashboard/pages/socials';
-import Experiences from './pages/dashboard/pages/experiences';
+import Experience from './pages/dashboard/pages/experience';
 import AddSkill from './pages/dashboard/pages/addSkill';
 import AddProject from './pages/dashboard/pages/addProject';
 import AddExperience from './pages/dashboard/pages/addExperience';
 import AddSocial from './pages/dashboard/pages/addSocial';
-import Achievements from './pages/dashboard/pages/achievements';
-import AddAchievement from './pages/dashboard/pages/addAchievements';
+import Achievement from './pages/dashboard/pages/achievement';
+import AddAchievement from './pages/dashboard/pages/addAchievement';
 import Website1 from './assets/images/website.jpg';
 import Website4 from './assets/images/website4.jpg';
 import Website5 from './assets/images/website5.jpg';
@@ -31,9 +31,9 @@ import { toast } from 'react-toastify';
 
 
 function App() {
-  const [experiences, setExperiences] = useState([]);
-  const [achievements, setAchievements] = useState([]);
-  const [projects, setProjects] = useState([
+  const [experience, setExperience] = useState([]);
+  const [achievement, setAchievement] = useState([]);
+  const [project, setProject] = useState([
     
   ]);
 
@@ -72,28 +72,28 @@ function App() {
           element: <AddSkill />,
         },
         {
-          path: 'projects',
-          element: <Projects projects={projects} />,
+          path: 'project',
+          element: <Project project={project} />,
         },
         {
-          path: 'projects/addproject',
-          element: <AddProject setProjects={setProjects} />,
+          path: 'project/addproject',
+          element: <AddProject setProject={setProject} />,
         },
         {
-          path: 'achievements',
-          element: <Achievements />,
+          path: 'achievement',
+          element: <Achievement achievement={achievement} />,
         },
         {
-          path: 'achievements/addAchievement',
-          element: <AddAchievement setAchievements={setAchievements} />,
+          path: 'achievement/addAchievement',
+          element: <AddAchievement setAchievement={setAchievement} />,
         },
         {
-          path: 'experiences',
-          element: <Experiences experiences={experiences} />,
+          path: 'experience',
+          element: <Experience experience={experience} />,
         },
         {
-          path: 'experiences/addExperience',
-          element: <AddExperience setExperiences={setExperiences} />,
+          path: 'experience/addExperience',
+          element: <AddExperience setExperience={setExperience} />,
         },
         {
           path: 'socials',
