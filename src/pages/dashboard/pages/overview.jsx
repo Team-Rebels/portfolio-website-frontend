@@ -1,37 +1,36 @@
-import BImage from '../../../assets/images/Banner.png';
-import Charles from '../../../assets/images/profile.jpg';
+
 import React, { useState, useEffect } from 'react';
 import CountUp from "react-countup";
 import { Link, useOutletContext } from "react-router-dom";
 
 import D from "../../../constants/navlinks"; 
 import { apiGetSkills } from '../../../services/skills';
-import { apiGetAchievements } from '../../../services/achievements';
-import { apiGetProjects } from '../../../services/projects';
+import { apiGetAchievement } from '../../../services/achievement';
+import { apiGetProject } from '../../../services/project';
 import { apiGetVolunteering } from '../../../services/volunteering';
 import { apiGetExperience } from '../../../services/experience';
 import { apiGetEducation } from '../../../services/education';
 import PageLoader from '../../../components/PageLoader';
 
 
+
 const Overview = () => {
 
   const [data, setData] = useState({
     skills: 0,
-    projects: 0,
-    achievements: 0,
+    project: 0,
+    achievement: 0,
     volunteering: 0,
-     
     education: 0,
-    experiences: 0,
+    experience: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [profile] = useOutletContext();
+  const [user] = useOutletContext();
 
   const getPreviewLink = () => {
-    if (!profile) return "/preview/theody";
+    if (!user) return "/preview/";
 
-    return `/preview/${profile.userName}`;
+    return `/preview/${user.userName}`;
   };
 
   const getData = async () => {
@@ -39,30 +38,36 @@ const Overview = () => {
     try {
       const [
         totalSkills,
-        totalAchievements,
-        totalProjects,
+        totalAchievement,
+        totalProject,
         totalVolunteering,
         totalEducation,
-        totalExperiences,
+        totalExperience,
       ] = await Promise.all([
         apiGetSkills(),
-        apiGetAchievements(),
-        apiGetProjects(),
+        apiGetAchievement(),
+        apiGetProject(),
         apiGetVolunteering(),
         apiGetEducation(),
         apiGetExperience(),
-
       ]);
-
-      console.log("Total skills: ", totalSkills.data.Skills.length);
-
+  
+      console.log("API Responses:", {
+        totalSkills,
+        totalAchievement,
+        totalProject,
+        totalVolunteering,
+        totalEducation,
+        totalExperience,
+      });
+  
       const newData = {
-        skills: totalSkills.data.Skills.length ?? 0,
-        projects: totalProjects.data.projects.length ?? 0,
-        achievements: totalAchievements.data.Achievements.length ?? 0,
-        volunteering: totalVolunteering.data.Volunteerings.length ?? 0,
-        education: totalEducation.data.education.length ?? 0,
-        experiences: totalExperiences.data.Experience.length ?? 0,
+        skills: totalSkills?.data?.Skills?.length ?? 0,
+        project: totalProject?.data?.project?.length ?? 0,
+        achievement: totalAchievement?.data?.Achievement?.length ?? 0,
+        volunteering: totalVolunteering?.data?.Volunteerings?.length ?? 0,
+        education: totalEducation?.data?.education?.length ?? 0,
+        experience: totalExperience?.data?.Experience?.length ?? 0,
       };
 
       setData(newData);

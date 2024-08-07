@@ -2,24 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
 import { TrashIcon, Edit } from 'lucide-react';
-import { apiGetProjects, apiDeleteProjects } from '../../../services/projects'; // Ensure this import is correct
+import { apiGetProject, apiDeleteProject } from '../../../services/project'; // Ensure this import is correct
 import PageLoader from '../../../components/PageLoader';
 import Nodata from '../../../assets/images/nodata.svg';
 import Loader from '../../../components/loader';
 import D from '../../../constants/navlinks';
 
-const Projects = () => {
+const Project = () => {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]);
+  const [project, setProject] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Fetch all projects from API
-  const fetchProjects = async () => {
+  const fetchProject = async () => {
     setIsLoading(true);
     try {
-      const res = await apiGetProjects();
-      setProjects(res.data); // Adjust based on your API response structure
+      const res = await apiGetProject();
+      console.log(res.data)
+      setProject(res.data.user); // Adjust based on your API response structure
     } catch (error) {
       console.log(error);
     } finally {
@@ -33,7 +34,7 @@ const Projects = () => {
     try {
       const res = await apiDeleteProject(id);
       console.log(res.data);
-      setProjects(projects.filter(item => item.id !== id));
+      setProject(project.filter(item => item.id !== id));
     } catch (error) {
       console.log(error);
     } finally {
@@ -42,7 +43,7 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    fetchProjects();
+    fetchProject();
   }, []);
 
   return (
@@ -50,18 +51,18 @@ const Projects = () => {
       headerText="Projects"
       headerTextClassName="text-[#0F1431]"
       buttonText="Add New Project"
-      onClick={() => navigate('/dashboard/projects/addproject')}
+      onClick={() => navigate('/dashboard/project/addproject')}
     >
       {isLoading ? (
         <PageLoader />
-      ) : projects.length === 0 ? (
+      ) : project.length === 0 ? (
         <div className="flex flex-col items-center">
           <img src={Nodata} alt="No data" className="w-48 h-48" />
           <p>No projects added yet</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-20">
-          {D.NAVLINKS.map((project) => (
+          {project.map((project) => (
             <div key={project.id} className="bg-white rounded-xl shadow-md p-5 flex flex-col mb-4">
               {project.thumbnailImage && (
                 <img
@@ -75,7 +76,7 @@ const Projects = () => {
               <div className="flex mt-auto">
                 <button
                   className="mr-2 p-2 hover:bg-green-400 rounded"
-                  onClick={() => navigate(`/dashboard/projects/edit/${project.id}`)}
+                  onClick={() => navigate(`/dashboard/project/edit/${project.id}`)}
                 >
                   <Edit className="w-5 h-5 text-green-600" />
                 </button>
@@ -94,4 +95,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Project;

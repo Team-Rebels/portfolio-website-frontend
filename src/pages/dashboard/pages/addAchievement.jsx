@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagesLayout from '../layouts/pagesLayout';
-import { apiAddAchievements } from '../../../services/achievements';
+import { apiAddAchievement } from '../../../services/achievement';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Loader from '../../../components/loader';
 
-const AddAchievement = ({ setAchievements }) => {
+const AddAchievement = ({ setAchievement }) => {
   const navigate = useNavigate();
   const {
     register,
@@ -21,7 +21,7 @@ const AddAchievement = ({ setAchievements }) => {
     setIsSubmitting(true);
 
     try {
-      const res = await apiAddAchievements({
+      const res = await apiAddAchievement({
         title: data.title,
         description: data.description,
         date: data.date,
