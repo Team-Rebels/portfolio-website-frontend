@@ -13,7 +13,6 @@ import { apiGetEducation } from '../../../services/education';
 import PageLoader from '../../../components/PageLoader';
 
 
-
 const Overview = () => {
 
   const [data, setData] = useState({
@@ -25,12 +24,12 @@ const Overview = () => {
     experience: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [user] = useOutletContext();
+  const [profile] = useOutletContext();
 
   const getPreviewLink = () => {
-    if (!user) return "/preview/";
+    if (!profile) return "/preview/";
 
-    return `/preview/${user.userName}`;
+    return `/preview/${profile.userName}`;
   };
 
   const getData = async () => {
@@ -92,7 +91,7 @@ const Overview = () => {
         <div className="p-8 bg-white-100">
            <Link
             to={getPreviewLink()}
-            className="bg-pink text-white ml-auto px-6 py-3 rounded-lg"
+            className=" text-[#4338CA] ml-auto px-6 py-3 rounded-lg"
           >
             View Preview
           </Link>
